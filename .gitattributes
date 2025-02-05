@@ -1,0 +1,7 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+*.psd !text !filter !merge !diff
+*.png !text !filter !merge !diff
+*.fbx !text !filter !merge !diff
+*.unity !text !filter !merge !diff
+*.prefab !text !filter !merge !diff
