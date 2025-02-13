@@ -35,6 +35,11 @@ public class GameManager : MonoBehaviour
             loseScreen.SetActive(true);
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape)) // if the player clicks the esc key, go back to the menu
+        {
+            ReturnToMenu();
+        }
+
     }
 
     public void UpdateHealth(int lives)
@@ -53,6 +58,15 @@ public class GameManager : MonoBehaviour
         finishGame = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene("Main");
+    }
+
+    public void ReturnToMenu()
+    {
+        PlayerPrefs.SetInt("HasSavedGame", 1);
+        PlayerPrefs.SetInt("SavedScene", SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.Save();
+
+        SceneManager.LoadScene("Menu");
     }
 
 }
