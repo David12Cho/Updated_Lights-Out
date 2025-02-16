@@ -11,11 +11,14 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed = 60f;
     public float dashDuration = 0.3f;
     private bool isDashing = false;
+    private AudioSource audioSource;
+    public AudioClip garlicHitSound;
 
     void Start()
     {
         _moveAction = InputSystem.actions.FindAction(actionNameOrId: "Move");
         _rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -91,8 +94,14 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Garlic"))
         {
+            if (garlicHitSound != null)
+            {
+                audioSource.PlayOneShot(garlicHitSound);
+            }
             Debug.Log("Collided with Garlic! (Physical Collision)");
             FindObjectOfType<HealthDisplay>().LoseLife();
+            GameManager.instance.UpdateHealth(1);
+
         }
     }
 }
