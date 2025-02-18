@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
                 audioSource.PlayOneShot(garlicHitSound);
             }
             Debug.Log("Collided with Garlic! (Physical Collision)");
-            FindObjectOfType<HealthDisplay>().LoseLife();
+            // FindObjectOfType<HealthDisplay>().LoseLife();
             GameManager.instance.UpdateHealth(1);
 
         }
