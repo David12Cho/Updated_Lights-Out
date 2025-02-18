@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
         _lives -= lives;
        // livesText.text = "Lives: " + _lives.ToString();
 
+       Debug.Log("Lose Life: " + lives);
+
         if (_lives <= 0)
         {
             GameOver();
@@ -74,7 +76,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    void GameOver()
+    public void GameOver()
     {
         Time.timeScale = 0f; // Pause the game
         loseScreen.SetActive(true); // Show Game Over screen
