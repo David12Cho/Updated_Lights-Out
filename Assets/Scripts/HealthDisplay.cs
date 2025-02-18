@@ -16,6 +16,7 @@ public class HealthDisplay : MonoBehaviour
             lives--; // Reduce life count
             hearts[lives].sprite = emptyHeartSprite; // Change full heart to empty heart
             hearts[lives].rectTransform.sizeDelta = new Vector2(22, 19); // Set size to 22x19
+            
         }
     }
 }

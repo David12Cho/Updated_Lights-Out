@@ -1,4 +1,4 @@
-git using TMPro;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     {
         _lives -= lives;
        // livesText.text = "Lives: " + _lives.ToString();
+
+       Debug.Log("Lose Life: " + lives);
 
         if (_lives <= 0)
         {
