@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class ProgressDisplay : MonoBehaviour
 {
     public Image pieImage; // Assign this in Unity
-    private float totalTime = 20f; // 300f is 5 minutes
+    public float totalTime = 120f; // 300f is 5 minutes
     private float elapsedTime = 0f;
 
     void Update()
@@ -18,7 +18,8 @@ public class ProgressDisplay : MonoBehaviour
         else
         {
             pieImage.fillAmount = 0f; // Timer reaches 0
-            Debug.Log("Time's up!");
+            // Debug.Log("Time's up!");
+            GameManager.instance.GameOver();
         }
     }
 }
