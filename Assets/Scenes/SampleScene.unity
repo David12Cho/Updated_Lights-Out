@@ -20,13 +20,13 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.13541298, g: 0.14829965, b: 0.16037738, a: 1}
+  m_AmbientSkyColor: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubtractiveShadowColor: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 1}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0.528
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
@@ -265,6 +265,10 @@ PrefabInstance:
     - target: {fileID: 5073924875541160480, guid: 0e433f108ddaf6b4f8ae6609d6c456d9, type: 3}
       propertyPath: m_Name
       value: tree4_3_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073924875541160480, guid: 0e433f108ddaf6b4f8ae6609d6c456d9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5557973442463430810, guid: 0e433f108ddaf6b4f8ae6609d6c456d9, type: 3}
       propertyPath: m_LocalScale.x
@@ -556,6 +560,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tree4_3_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5073924875541160480, guid: 0e433f108ddaf6b4f8ae6609d6c456d9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5557973442463430810, guid: 0e433f108ddaf6b4f8ae6609d6c456d9, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -625,6 +633,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tree4_1_prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7175052650772661354, guid: 76b3034baace72143b1606be82b91e65, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7555132463882165968, guid: 76b3034baace72143b1606be82b91e65, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -693,6 +705,10 @@ PrefabInstance:
     - target: {fileID: 7175052650772661354, guid: 76b3034baace72143b1606be82b91e65, type: 3}
       propertyPath: m_Name
       value: tree4_1_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175052650772661354, guid: 76b3034baace72143b1606be82b91e65, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7555132463882165968, guid: 76b3034baace72143b1606be82b91e65, type: 3}
       propertyPath: m_LocalScale.x
@@ -1101,6 +1117,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tree4_1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 7175052650772661354, guid: 76b3034baace72143b1606be82b91e65, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7555132463882165968, guid: 76b3034baace72143b1606be82b91e65, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -1170,6 +1190,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tree4_3_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5073924875541160480, guid: 0e433f108ddaf6b4f8ae6609d6c456d9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5557973442463430810, guid: 0e433f108ddaf6b4f8ae6609d6c456d9, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -1236,7 +1260,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 297075488}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TreeSet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2263,7 +2287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 774208632}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TreeSet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2298,6 +2322,10 @@ PrefabInstance:
     - target: {fileID: 7175052650772661354, guid: 76b3034baace72143b1606be82b91e65, type: 3}
       propertyPath: m_Name
       value: tree4_1_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175052650772661354, guid: 76b3034baace72143b1606be82b91e65, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7555132463882165968, guid: 76b3034baace72143b1606be82b91e65, type: 3}
       propertyPath: m_LocalScale.x
@@ -2412,6 +2440,10 @@ PrefabInstance:
     - target: {fileID: 7175052650772661354, guid: 76b3034baace72143b1606be82b91e65, type: 3}
       propertyPath: m_Name
       value: tree4_1_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175052650772661354, guid: 76b3034baace72143b1606be82b91e65, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7555132463882165968, guid: 76b3034baace72143b1606be82b91e65, type: 3}
       propertyPath: m_LocalScale.x
@@ -2537,7 +2569,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.96840715, b: 0.3207547, a: 1}
-  m_Intensity: 5000
+  m_Intensity: 20000
   m_Range: 10000
   m_SpotAngle: 40
   m_InnerSpotAngle: 37
@@ -2579,7 +2611,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 3
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -2605,7 +2637,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 897412264}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TreeSet (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2655,6 +2687,10 @@ PrefabInstance:
     - target: {fileID: 5073924875541160480, guid: 0e433f108ddaf6b4f8ae6609d6c456d9, type: 3}
       propertyPath: m_Name
       value: tree4_3_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073924875541160480, guid: 0e433f108ddaf6b4f8ae6609d6c456d9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5557973442463430810, guid: 0e433f108ddaf6b4f8ae6609d6c456d9, type: 3}
       propertyPath: m_LocalScale.x
@@ -2740,6 +2776,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 880358845}
+  - {fileID: 1272235692}
   m_Father: {fileID: 1406921651}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &997301488
@@ -2766,6 +2803,10 @@ PrefabInstance:
     - target: {fileID: 7175052650772661354, guid: 76b3034baace72143b1606be82b91e65, type: 3}
       propertyPath: m_Name
       value: tree4_1_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175052650772661354, guid: 76b3034baace72143b1606be82b91e65, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7555132463882165968, guid: 76b3034baace72143b1606be82b91e65, type: 3}
       propertyPath: m_LocalScale.x
@@ -2835,6 +2876,10 @@ PrefabInstance:
     - target: {fileID: 6300010298277293891, guid: ebce44df2d92b9442832ca4e98640b12, type: 3}
       propertyPath: m_Name
       value: tree4_2_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6300010298277293891, guid: ebce44df2d92b9442832ca4e98640b12, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6639978553082295801, guid: ebce44df2d92b9442832ca4e98640b12, type: 3}
       propertyPath: m_LocalScale.x
@@ -3568,6 +3613,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1919378005}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &1272235691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1272235692}
+  - component: {fileID: 1272235693}
+  m_Layer: 0
+  m_Name: Vision Cone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1272235692
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272235691}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 997301487}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1272235693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272235691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7c9ba8d6fa1cb746a52468b4158b538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 105
+  angle: 40
+  player: {fileID: 0}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 64
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 128
+  canSeePlayer: 0
+  revolutionDuration: 6
 --- !u!1 &1310312541
 GameObject:
   m_ObjectHideFlags: 0
@@ -3682,6 +3782,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1406921651}
+  - component: {fileID: 1406921652}
   m_Layer: 0
   m_Name: '|| LIGHTHOUSE ||'
   m_TagString: Untagged
@@ -3698,13 +3799,27 @@ Transform:
   m_GameObject: {fileID: 1406921650}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.557361, y: 17.707436, z: 168.2}
+  m_LocalPosition: {x: 0.557361, y: 3, z: -801.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 997301487}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1406921652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406921650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 021699590c1ff19418582a9c56a0121e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  zOffset: 0
 --- !u!1 &1429263810
 GameObject:
   m_ObjectHideFlags: 0
@@ -4047,7 +4162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1620688347}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: '|| TREES ||'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4104,7 +4219,7 @@ GameObject:
   - component: {fileID: 1675908569}
   - component: {fileID: 1675908568}
   - component: {fileID: 1675908573}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4586,7 +4701,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1811707026}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TreeSet (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4621,6 +4736,10 @@ PrefabInstance:
     - target: {fileID: 7175052650772661354, guid: 76b3034baace72143b1606be82b91e65, type: 3}
       propertyPath: m_Name
       value: tree4_1_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175052650772661354, guid: 76b3034baace72143b1606be82b91e65, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7555132463882165968, guid: 76b3034baace72143b1606be82b91e65, type: 3}
       propertyPath: m_LocalScale.x
@@ -4690,6 +4809,10 @@ PrefabInstance:
     - target: {fileID: 7175052650772661354, guid: 76b3034baace72143b1606be82b91e65, type: 3}
       propertyPath: m_Name
       value: tree4_1_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175052650772661354, guid: 76b3034baace72143b1606be82b91e65, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7555132463882165968, guid: 76b3034baace72143b1606be82b91e65, type: 3}
       propertyPath: m_LocalScale.x
@@ -4845,6 +4968,10 @@ PrefabInstance:
     - target: {fileID: 7175052650772661354, guid: 76b3034baace72143b1606be82b91e65, type: 3}
       propertyPath: m_Name
       value: tree4_1_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175052650772661354, guid: 76b3034baace72143b1606be82b91e65, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7555132463882165968, guid: 76b3034baace72143b1606be82b91e65, type: 3}
       propertyPath: m_LocalScale.x
@@ -5235,6 +5362,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tree4_1_prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7175052650772661354, guid: 76b3034baace72143b1606be82b91e65, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7555132463882165968, guid: 76b3034baace72143b1606be82b91e65, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -5303,6 +5434,10 @@ PrefabInstance:
     - target: {fileID: 6300010298277293891, guid: ebce44df2d92b9442832ca4e98640b12, type: 3}
       propertyPath: m_Name
       value: tree4_2_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6300010298277293891, guid: ebce44df2d92b9442832ca4e98640b12, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6639978553082295801, guid: ebce44df2d92b9442832ca4e98640b12, type: 3}
       propertyPath: m_LocalScale.x
@@ -5458,6 +5593,10 @@ PrefabInstance:
     - target: {fileID: 5073924875541160480, guid: 0e433f108ddaf6b4f8ae6609d6c456d9, type: 3}
       propertyPath: m_Name
       value: tree4_3_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073924875541160480, guid: 0e433f108ddaf6b4f8ae6609d6c456d9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5557973442463430810, guid: 0e433f108ddaf6b4f8ae6609d6c456d9, type: 3}
       propertyPath: m_LocalScale.x
@@ -5632,6 +5771,10 @@ PrefabInstance:
     - target: {fileID: 6300010298277293891, guid: ebce44df2d92b9442832ca4e98640b12, type: 3}
       propertyPath: m_Name
       value: tree4_2_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6300010298277293891, guid: ebce44df2d92b9442832ca4e98640b12, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6639978553082295801, guid: ebce44df2d92b9442832ca4e98640b12, type: 3}
       propertyPath: m_LocalScale.x
