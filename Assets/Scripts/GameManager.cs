@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     private bool hasDied = false;
     private bool finishGame = false;
 
-    int _lives = 3;
+    int _lives = 5;
     int _score = 0;
 
     private void Awake()
@@ -45,19 +45,24 @@ public class GameManager : MonoBehaviour
     public void UpdateHealth(int lives)
     {
         _lives -= lives;
-        livesText.text = "Lives: " + _lives.ToString();
+       // livesText.text = "Lives: " + _lives.ToString();
+
+        if (_lives <= 0)
+        {
+            GameOver();
+        }
     }
 
     public void UpdateScore(int score)
     {
         _score += score;
-        ScoreText.text = "Score: " + _score.ToString();
+      //  ScoreText.text = "Score: " + _score.ToString();
     }
     public void ResetTheGame()
     {
         finishGame = false;
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void ReturnToMenu()
@@ -67,6 +72,12 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
 
         SceneManager.LoadScene("Menu");
+    }
+
+    void GameOver()
+    {
+        Time.timeScale = 0f; // Pause the game
+        loseScreen.SetActive(true); // Show Game Over screen
     }
 
 }
