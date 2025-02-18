@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    void GameOver()
+    public void GameOver()
     {
         Time.timeScale = 0f; // Pause the game
         loseScreen.SetActive(true); // Show Game Over screen
