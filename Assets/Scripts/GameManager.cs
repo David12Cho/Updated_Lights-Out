@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     public void UpdateHealth(int lives)
     {
         _lives -= lives;
+        FindObjectOfType<HealthDisplay>().LoseLife();
        // livesText.text = "Lives: " + _lives.ToString();
 
        Debug.Log("Lose Life: " + lives);
