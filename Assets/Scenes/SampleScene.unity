@@ -1379,6 +1379,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2832824865896579117, guid: 33756e369f9ca5443bcd042d742fc962, type: 3}
+      propertyPath: angryGarlicPrefab
+      value: 
+      objectReference: {fileID: 6220275949471691736, guid: a4a2b254328264e0dbaf1e632979ecde, type: 3}
     - target: {fileID: 6220275949471691736, guid: 33756e369f9ca5443bcd042d742fc962, type: 3}
       propertyPath: m_Name
       value: Garlic (1)
@@ -1646,6 +1650,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2832824865896579117, guid: a4a2b254328264e0dbaf1e632979ecde, type: 3}
+      propertyPath: angryGarlicPrefab
+      value: 
+      objectReference: {fileID: 6220275949471691736, guid: a4a2b254328264e0dbaf1e632979ecde, type: 3}
     - target: {fileID: 6220275949471691736, guid: a4a2b254328264e0dbaf1e632979ecde, type: 3}
       propertyPath: m_Name
       value: AngryGarlic
@@ -1968,6 +1976,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2832824865896579117, guid: 33756e369f9ca5443bcd042d742fc962, type: 3}
+      propertyPath: angryGarlicPrefab
+      value: 
+      objectReference: {fileID: 6220275949471691736, guid: a4a2b254328264e0dbaf1e632979ecde, type: 3}
     - target: {fileID: 6220275949471691736, guid: 33756e369f9ca5443bcd042d742fc962, type: 3}
       propertyPath: m_Name
       value: Garlic
@@ -3068,6 +3080,10 @@ PrefabInstance:
       propertyPath: targetPos2.z
       value: -981.17
       objectReference: {fileID: 0}
+    - target: {fileID: 2832824865896579117, guid: 33756e369f9ca5443bcd042d742fc962, type: 3}
+      propertyPath: angryGarlicPrefab
+      value: 
+      objectReference: {fileID: 6220275949471691736, guid: a4a2b254328264e0dbaf1e632979ecde, type: 3}
     - target: {fileID: 6220275949471691736, guid: 33756e369f9ca5443bcd042d742fc962, type: 3}
       propertyPath: m_Name
       value: Garlic (2)
@@ -3173,6 +3189,10 @@ PrefabInstance:
       propertyPath: targetPos2.z
       value: -981.17
       objectReference: {fileID: 0}
+    - target: {fileID: 2832824865896579117, guid: 33756e369f9ca5443bcd042d742fc962, type: 3}
+      propertyPath: angryGarlicPrefab
+      value: 
+      objectReference: {fileID: 6220275949471691736, guid: a4a2b254328264e0dbaf1e632979ecde, type: 3}
     - target: {fileID: 6220275949471691736, guid: 33756e369f9ca5443bcd042d742fc962, type: 3}
       propertyPath: m_Name
       value: Garlic (3)
@@ -5900,6 +5920,10 @@ PrefabInstance:
       propertyPath: targetPos2.z
       value: -981.17
       objectReference: {fileID: 0}
+    - target: {fileID: 2832824865896579117, guid: 33756e369f9ca5443bcd042d742fc962, type: 3}
+      propertyPath: angryGarlicPrefab
+      value: 
+      objectReference: {fileID: 6220275949471691736, guid: a4a2b254328264e0dbaf1e632979ecde, type: 3}
     - target: {fileID: 6220275949471691736, guid: 33756e369f9ca5443bcd042d742fc962, type: 3}
       propertyPath: m_Name
       value: Garlic
