@@ -12,15 +12,15 @@ public class Garlic : MonoBehaviour
     [SerializeField] private float bounceSpeed = 4f;
 
     [Header("Detection Settings")]
-    [SerializeField] private float detectionRadius = 5f;    // How close the player must be
-    [SerializeField] private float detectionAngle = 45f;      // Field of view angle (half cone angle)
-    [SerializeField] private GameObject angryGarlicPrefab;    // Assign your angry garlic prefab here
+    [SerializeField] private float detectionRadius = 5f; // How close the player must be
+    [SerializeField] private GameObject angryGarlicPrefab; // Assign your angry garlic prefab here
 
     private float baseY;
 
     private void Start()
     {
         baseY = transform.position.y;
+        Debug.Log("Garlic started at position: " + transform.position);
     }
 
     private void Update()
@@ -31,10 +31,15 @@ public class Garlic : MonoBehaviour
 
     void PatrolAndBounce()
     {
+        // Calculate horizontal patrol position using PingPong.
         float t = Mathf.PingPong(Time.time * patrolSpeed, 1f);
         Vector3 horizontalPos = Vector3.Lerp(targetPos1, targetPos2, t);
+        // Calculate bounce offset using a sine wave.
         float bounceOffset = Mathf.Abs(Mathf.Sin(Time.time * bounceSpeed)) * bounceHeight;
+        // Update position with horizontal movement and vertical bounce.
         transform.position = new Vector3(horizontalPos.x, baseY + bounceOffset, horizontalPos.z);
+        
+        Debug.Log("Updated garlic position: " + transform.position);
     }
 
     void CheckPlayerDetection()
@@ -42,42 +47,42 @@ public class Garlic : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            Vector3 directionToPlayer = player.transform.position - transform.position;
-            float distance = directionToPlayer.magnitude;
-
-            // Check if within detection radius
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            Debug.Log("Distance to player: " + distance);
             if (distance <= detectionRadius)
             {
-                // Normalize the direction vector for angle calculation
-                directionToPlayer.Normalize();
-
-                // Calculate the angle between garlic's forward and the direction to the player
-                float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
-
-                // Check if the player is within the vision cone
-                if (angleToPlayer <= detectionAngle)
-                {
-                    Debug.Log($"Player detected within {detectionRadius} units and {detectionAngle}° vision cone (angle: {angleToPlayer}).");
-                    BecomeAngry();
-                }
+                Debug.Log("Player detected within range (" + distance + " <= " + detectionRadius + ").");
+                //BecomeAngry();
             }
+        }
+        else
+        {
+            Debug.LogWarning("Player not found in the scene. Ensure the player is tagged 'Player'.");
         }
     }
 
     void BecomeAngry()
     {
         Debug.Log("Garlic is becoming angry at position: " + transform.position);
-
+        
         if (angryGarlicPrefab != null)
         {
             Vector3 spawnPosition = transform.position;
             Debug.Log("Spawning angry garlic at: " + spawnPosition);
+            
             GameObject angryGarlic = Instantiate(angryGarlicPrefab, spawnPosition, transform.rotation);
-            Debug.Log("Angry garlic instantiated: " + angryGarlic.name);
+            if (angryGarlic != null)
+            {
+                Debug.Log("Angry garlic instantiated successfully: " + angryGarlic.name);
+            }
+            else
+            {
+                Debug.LogError("Failed to instantiate angry garlic.");
+            }
         }
         else
         {
-            Debug.LogWarning("Angry garlic prefab is not assigned in the inspector!");
+            Debug.LogWarning("Angry garlic prefab is not assigned in the Inspector!");
         }
 
         Destroy(gameObject);
@@ -85,17 +90,11 @@ public class Garlic : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        // Draw detection radius
+        // Draw a wire sphere to visualize the detection radius.
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
-
-        // Draw vision cone lines (approximate)
-        Vector3 rightBoundary = Quaternion.Euler(0, detectionAngle, 0) * transform.forward;
-        Vector3 leftBoundary = Quaternion.Euler(0, -detectionAngle, 0) * transform.forward;
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, transform.position + rightBoundary * detectionRadius);
-        Gizmos.DrawLine(transform.position, transform.position + leftBoundary * detectionRadius);
     }
 }
+
 
 
