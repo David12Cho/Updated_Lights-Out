@@ -2,42 +2,46 @@ using UnityEngine;
 
 public class Garlic : MonoBehaviour
 {
-    [Header("Patrol Settings")]
-    [SerializeField] private Vector3 targetPos1;
-    [SerializeField] private Vector3 targetPos2;
-    [SerializeField] private float patrolSpeed = 1f;
+    [Header("Wander Settings")]
+    [SerializeField] private float moveRadius = 2f;      // Maximum distance from the center.
+    [SerializeField] private float moveSpeed = 1f;         // Speed of horizontal movement.
+    private Vector3 centerPos;                             // The central position to wander around.
 
     [Header("Bounce Settings")]
-    [SerializeField] private float bounceHeight = 0.5f;
-    [SerializeField] private float bounceSpeed = 4f;
+    [SerializeField] private float bounceHeight = 0.5f;    // How high to bounce.
+    [SerializeField] private float bounceSpeed = 4f;       // Speed of the vertical bounce.
+    private float baseY;                                   // The starting y position.
 
     [Header("Detection Settings")]
-    [SerializeField] private float detectionRadius = 5f; // How close the player must be
-    [SerializeField] private GameObject angryGarlicPrefab; // Assign your angry garlic prefab here
-
-    private float baseY;
+    [SerializeField] private float detectionRadius = 5f;
+    [SerializeField] private GameObject angryGarlicPrefab;
 
     private void Start()
     {
+        // Use the starting position as the center for wandering.
+        centerPos = transform.position;
         baseY = transform.position.y;
         Debug.Log("Garlic started at position: " + transform.position);
     }
 
     private void Update()
     {
-        PatrolAndBounce();
+        WanderAndBounce();
         CheckPlayerDetection();
     }
 
-    void PatrolAndBounce()
+    void WanderAndBounce()
     {
-        // Calculate horizontal patrol position using PingPong.
-        float t = Mathf.PingPong(Time.time * patrolSpeed, 1f);
-        Vector3 horizontalPos = Vector3.Lerp(targetPos1, targetPos2, t);
-        // Calculate bounce offset using a sine wave.
-        float bounceOffset = Mathf.Abs(Mathf.Sin(Time.time * bounceSpeed)) * bounceHeight;
-        // Update position with horizontal movement and vertical bounce.
-        transform.position = new Vector3(horizontalPos.x, baseY + bounceOffset, horizontalPos.z);
+        // Create horizontal wandering motion using sin and cos.
+        float offsetX = Mathf.Sin(Time.time * moveSpeed) * moveRadius;
+        float offsetZ = Mathf.Cos(Time.time * moveSpeed) * moveRadius;
+        Vector3 wanderOffset = new Vector3(offsetX, 0, offsetZ);
+
+        // Create a vertical bounce using an absolute sine wave so it bounces upward.
+        float verticalBounce = Mathf.Abs(Mathf.Sin(Time.time * bounceSpeed)) * bounceHeight;
+
+        // Update the garlic's position.
+        transform.position = centerPos + wanderOffset + new Vector3(0, verticalBounce, 0);
         
         Debug.Log("Updated garlic position: " + transform.position);
     }
@@ -52,7 +56,8 @@ public class Garlic : MonoBehaviour
             if (distance <= detectionRadius)
             {
                 Debug.Log("Player detected within range (" + distance + " <= " + detectionRadius + ").");
-                //BecomeAngry();
+                // Uncomment the next line to trigger anger when the player is close.
+                // BecomeAngry();
             }
         }
         else
@@ -90,7 +95,7 @@ public class Garlic : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        // Draw a wire sphere to visualize the detection radius.
+        // Visualize the detection radius in the editor.
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
