@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
                 Dash();
             }
         }
+
     }
 
     private void MovePlayer()
@@ -87,6 +88,23 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Garlic"))
         {
             GameManager.instance.UpdateHealth(1);
+        }
+
+        if (other.gameObject.CompareTag("Shadow"))
+        {
+            GameManager.instance.UpdateShadow(true);
+            Debug.Log("In shadow!");
+
+        } 
+    }
+    private void OnTriggerExit(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("Shadow"))
+        {
+            GameManager.instance.UpdateShadow(false);
+            Debug.Log("Exited shadow");
+
         }
     }
 
