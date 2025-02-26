@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI countText;
     public GameObject loseScreen;
+    public bool inShadow = false;
     private bool hasDied = false;
     private bool finishGame = false;
 
@@ -44,22 +45,27 @@ public class GameManager : MonoBehaviour
 
     public void UpdateHealth(int lives)
     {
-        _lives -= lives;
-        FindObjectOfType<HealthDisplay>().LoseLife();
-       // livesText.text = "Lives: " + _lives.ToString();
-
-       Debug.Log("Lose Life: " + lives);
-
-        if (_lives <= 0)
+        if (!inShadow)
         {
-            GameOver();
+            _lives -= lives;
+            FindObjectOfType<HealthDisplay>().LoseLife();
+            Debug.Log("Lose Life: " + lives);
+
+            if (_lives <= 0)
+            {
+                GameOver();
+            }
         }
+    }
+
+    public void UpdateShadow(bool true_false)
+    {
+        inShadow = true_false;
     }
 
     public void UpdateScore(int score)
     {
         _score += score;
-      //  ScoreText.text = "Score: " + _score.ToString();
     }
     public void ResetTheGame()
     {
