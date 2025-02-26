@@ -31,35 +31,6 @@ public class Garlic : MonoBehaviour
     }
 
     void WanderAndBounce()
-    [Header("Wander Settings")]
-    [SerializeField] private float moveRadius = 2f;      // Maximum distance from the center.
-    [SerializeField] private float moveSpeed = 1f;         // Speed of horizontal movement.
-    private Vector3 centerPos;                             // The central position to wander around.
-
-    [Header("Bounce Settings")]
-    [SerializeField] private float bounceHeight = 0.5f;    // How high to bounce.
-    [SerializeField] private float bounceSpeed = 4f;       // Speed of the vertical bounce.
-    private float baseY;                                   // The starting y position.
-
-    [Header("Detection Settings")]
-    [SerializeField] private float detectionRadius = 5f;
-    [SerializeField] private GameObject angryGarlicPrefab;
-
-    private void Start()
-    {
-        // Use the starting position as the center for wandering.
-        centerPos = transform.position;
-        baseY = transform.position.y;
-        Debug.Log("Garlic started at position: " + transform.position);
-    }
-
-    private void Update()
-    {
-        WanderAndBounce();
-        CheckPlayerDetection();
-    }
-
-    void WanderAndBounce()
     {
         // Create horizontal wandering motion using sin and cos.
         float offsetX = Mathf.Sin(Time.time * moveSpeed) * moveRadius;
@@ -127,24 +98,7 @@ public class Garlic : MonoBehaviour
         // Visualize the detection radius in the editor.
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
-                Debug.LogError("Failed to instantiate angry garlic.");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("Angry garlic prefab is not assigned in the Inspector!");
-        }
-
-        Destroy(gameObject);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        // Visualize the detection radius in the editor.
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 }
-
 
 
