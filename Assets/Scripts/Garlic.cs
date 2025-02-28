@@ -21,7 +21,7 @@ public class Garlic : MonoBehaviour
         // Use the starting position as the center for wandering.
         centerPos = transform.position;
         baseY = transform.position.y;
-        Debug.Log("Garlic started at position: " + transform.position);
+        // Debug.Log("Garlic started at position: " + transform.position);
     }
 
     private void Update()
@@ -43,7 +43,7 @@ public class Garlic : MonoBehaviour
         // Update the garlic's position.
         transform.position = centerPos + wanderOffset + new Vector3(0, verticalBounce, 0);
         
-        Debug.Log("Updated garlic position: " + transform.position);
+        // Debug.Log("Updated garlic position: " + transform.position);
     }
 
     void CheckPlayerDetection()
@@ -52,42 +52,42 @@ public class Garlic : MonoBehaviour
         if (player != null)
         {
             float distance = Vector3.Distance(transform.position, player.transform.position);
-            Debug.Log("Distance to player: " + distance);
-            if (distance <= detectionRadius)
-            {
-                Debug.Log("Player detected within range (" + distance + " <= " + detectionRadius + ").");
-                // Uncomment the next line to trigger anger when the player is close.
-                // BecomeAngry();
-            }
+            // Debug.Log("Distance to player: " + distance);
+            // if (distance <= detectionRadius)
+            // {
+            //     Debug.Log("Player detected within range (" + distance + " <= " + detectionRadius + ").");
+            //     // Uncomment the next line to trigger anger when the player is close.
+            //     // BecomeAngry();
+            // }
         }
         else
         {
-            Debug.LogWarning("Player not found in the scene. Ensure the player is tagged 'Player'.");
+            // Debug.LogWarning("Player not found in the scene. Ensure the player is tagged 'Player'.");
         }
     }
 
     void BecomeAngry()
     {
-        Debug.Log("Garlic is becoming angry at position: " + transform.position);
+        // Debug.Log("Garlic is becoming angry at position: " + transform.position);
         
         if (angryGarlicPrefab != null)
         {
             Vector3 spawnPosition = transform.position;
-            Debug.Log("Spawning angry garlic at: " + spawnPosition);
+            // Debug.Log("Spawning angry garlic at: " + spawnPosition);
             
             GameObject angryGarlic = Instantiate(angryGarlicPrefab, spawnPosition, transform.rotation);
             if (angryGarlic != null)
             {
-                Debug.Log("Angry garlic instantiated successfully: " + angryGarlic.name);
+                // Debug.Log("Angry garlic instantiated successfully: " + angryGarlic.name);
             }
             else
             {
-                Debug.LogError("Failed to instantiate angry garlic.");
+                // Debug.LogError("Failed to instantiate angry garlic.");
             }
         }
         else
         {
-            Debug.LogWarning("Angry garlic prefab is not assigned in the Inspector!");
+            // Debug.LogWarning("Angry garlic prefab is not assigned in the Inspector!");
         }
 
         Destroy(gameObject);

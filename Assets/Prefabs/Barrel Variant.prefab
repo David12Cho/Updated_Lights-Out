@@ -12,17 +12,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 3357560937159569743, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.75
+    - target: {fileID: 2613474329591085232, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3357560937159569743, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 3357560937159569743, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2.75
+    - target: {fileID: 2613474329591085232, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3357560937159569743, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -64,9 +60,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3357560937159569743, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
+    - target: {fileID: 6947979959900300996, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
+      propertyPath: m_Radius
+      value: 0.4173806
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947979959900300996, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
+      propertyPath: m_Center.z
+      value: 0.010220614
+      objectReference: {fileID: 0}
+    - target: {fileID: 8380349800207709167, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
