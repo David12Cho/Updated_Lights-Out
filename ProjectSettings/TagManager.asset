@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Garlic
   - Shadow
+  - Ground
   layers:
   - Default
   - TransparentFX

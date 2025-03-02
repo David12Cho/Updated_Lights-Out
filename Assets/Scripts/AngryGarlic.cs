@@ -2,14 +2,12 @@ using UnityEngine;
 
 public class AngryGarlic : MonoBehaviour
 {
-    // Speed at which the enemy follows the player.
     public float followSpeed = 3f;
 
     private Transform playerTransform;
 
     void Start()
     {
-        // Look for the player in the scene by tag.
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -25,19 +23,24 @@ public class AngryGarlic : MonoBehaviour
     {
         if (playerTransform != null)
         {
-            // Calculate the direction from enemy to player.
-            Vector3 direction = (playerTransform.position - transform.position).normalized;
+            Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
 
-            transform.position += direction * followSpeed * Time.deltaTime;
+            transform.position += directionToPlayer * followSpeed * Time.deltaTime;
 
-            if (direction != Vector3.zero)
+            if (directionToPlayer != Vector3.zero)
             {
-                Quaternion lookRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * followSpeed);
+                Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+                
+
+                targetRotation *= Quaternion.Euler(0, 200f, 0);
+
+                // Smoothly rotate the enemy towards the target rotation.
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * followSpeed);
             }
         }
     }
 }
+
 
 
 
