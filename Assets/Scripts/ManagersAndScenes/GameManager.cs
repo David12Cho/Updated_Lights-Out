@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject loseScreen;
     public bool inShadow = false;
     private bool hasDied = false;
-    private bool finishGame = false;
+    // private bool finishGame = false;
 
     int _lives = 5;
     int _score = 0;
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         if (!inShadow)
         {
             _lives -= lives;
-            FindObjectOfType<HealthDisplay>().LoseLife();
+            FindFirstObjectByType<HealthDisplay>().LoseLife();
             Debug.Log("Lose Life: " + lives);
 
             if (_lives <= 0)
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
     }
     public void ResetTheGame()
     {
-        finishGame = false;
+        // finishGame = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene("SampleScene");
     }
