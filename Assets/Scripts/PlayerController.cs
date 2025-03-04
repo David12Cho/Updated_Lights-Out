@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -88,9 +89,16 @@ public class PlayerController : MonoBehaviour
             dashDirection = moveDir;
         }
 
-        // Preserve vertical velocity by only setting horizontal components
-        Vector3 currentVelocity = _rb.linearVelocity;
-        _rb.linearVelocity = new Vector3(moveDir.x * speed, currentVelocity.y, moveDir.z * speed);
+        _rb.linearVelocity = moveDir * speed;
+
+        // clamp position if on level 2
+        if (SceneManager.GetActiveScene().name == "Level 2 (Docks)")
+        {
+            Vector3 clampedPosition = _rb.position;
+            clampedPosition.x = Mathf.Clamp(clampedPosition.x, -8.4f, 8.6f); // clamp left and right
+            clampedPosition.z = Mathf.Max(clampedPosition.z, -999f); // clamp backwards
+            _rb.position = clampedPosition;
+        }
     }
 
     private void Dash()
