@@ -47,9 +47,19 @@ public class GameManager : MonoBehaviour
     {
         if (!inShadow)
         {
-            _lives -= lives;
-            FindFirstObjectByType<HealthDisplay>().LoseLife();
-            Debug.Log("Lose Life: " + lives);
+            _lives -= lives; // Decrease on damage, increase on healing (lives is negative when healing)
+
+            if (lives > 0) // Losing health
+            {
+                FindObjectOfType<HealthDisplay>().LoseLife();
+            }
+            else if (lives < 0) // Gaining health
+            {
+                if (_lives > 5) _lives = 5; // Ensure max lives don’t exceed 5
+                FindObjectOfType<HealthDisplay>().GainLife(); // Update UI to add a heart
+            }
+
+            Debug.Log("Updated Lives: " + _lives);
 
             if (_lives <= 0)
             {
@@ -92,6 +102,11 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f; // Pause the game
         loseScreen.SetActive(true); // Show Game Over screen
+    }
+
+    public int GetLives()
+    {
+        return _lives;
     }
 
 }
