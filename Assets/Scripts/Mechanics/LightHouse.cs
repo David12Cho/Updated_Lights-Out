@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class LightFade : MonoBehaviour
+public class LightHouse : MonoBehaviour
 {
     public Light dirLight;  // Assign your Directional Light in the Inspector
     public float fadeDuration = 0.2f; // Time to fade in and out
