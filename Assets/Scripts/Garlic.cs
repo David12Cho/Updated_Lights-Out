@@ -21,7 +21,7 @@ public class Garlic : MonoBehaviour
         // Use the starting position as the center for wandering.
         centerPos = transform.position;
         baseY = transform.position.y;
-        Debug.Log("Garlic started at position: " + transform.position);
+        // Debug.Log("Garlic started at position: " + transform.position);
     }
 
     private void Update()
@@ -43,7 +43,7 @@ public class Garlic : MonoBehaviour
         // Update the garlic's position.
         transform.position = centerPos + wanderOffset + new Vector3(0, verticalBounce, 0);
         
-        Debug.Log("Updated garlic position: " + transform.position);
+        // Debug.Log("Updated garlic position: " + transform.position);
     }
 
     void CheckPlayerDetection()
@@ -52,10 +52,10 @@ public class Garlic : MonoBehaviour
         if (player != null)
         {
             float distance = Vector3.Distance(transform.position, player.transform.position);
-            Debug.Log("Distance to player: " + distance);
+            // Debug.Log("Distance to player: " + distance);
             if (distance <= detectionRadius)
             {
-                Debug.Log("Player detected within range (" + distance + " <= " + detectionRadius + ").");
+                // Debug.Log("Player detected within range (" + distance + " <= " + detectionRadius + ").");
                 // Uncomment the next line to trigger anger when the player is close.
                 // BecomeAngry();
             }
