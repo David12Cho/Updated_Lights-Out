@@ -155,10 +155,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Garlic"))
-        {
-            GameManager.instance.UpdateHealth(1);
-        }
+        // if (other.gameObject.CompareTag("Garlic"))
+        // {
+        //     GameManager.instance.UpdateHealth(1);
+        // }
         if (other.gameObject.CompareTag("Shadow"))
         {
             GameManager.instance.UpdateShadow(true);

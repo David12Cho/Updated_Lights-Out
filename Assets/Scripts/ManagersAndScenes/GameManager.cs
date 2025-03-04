@@ -58,6 +58,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public int GetHealth()
+    {
+        return _lives;
+    }
+
     public void UpdateShadow(bool true_false)
     {
         inShadow = true_false;
