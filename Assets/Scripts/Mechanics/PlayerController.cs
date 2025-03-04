@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
     // Ground check flag to prevent double jumps
     private bool isGrounded = false;
 
+    // for small boxes
+    private bool isInNotCrouchedArea = false;
+
     void Start()
     {
         _moveAction = InputSystem.actions.FindAction("Move");
@@ -163,14 +166,16 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // if (other.gameObject.CompareTag("Garlic"))
-        // {
-        //     GameManager.instance.UpdateHealth(1);
-        // }
-        if (other.gameObject.CompareTag("Shadow"))
+        if (other.gameObject.CompareTag("Shadow") && !isInNotCrouchedArea)
         {
             GameManager.instance.UpdateShadow(true);
             Debug.Log("In shadow!");
+        } 
+        else if (other.gameObject.CompareTag("NotCrouched"))
+        {
+            isInNotCrouchedArea = true;
+            GameManager.instance.UpdateShadow(false);
+            Debug.Log("Not crouched, not in shadow!");
         }
     }
 
@@ -180,6 +185,15 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.instance.UpdateShadow(false);
             Debug.Log("Exited shadow");
+        }
+        else if (other.gameObject.CompareTag("NotCrouched"))
+        {
+            isInNotCrouchedArea = false;
+            if (!isInNotCrouchedArea && !isGrounded) 
+            {
+                GameManager.instance.UpdateShadow(true);
+                Debug.Log("Exited NotCrouched, back in shadow");
+            }
         }
     }
 
@@ -210,14 +224,3 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-

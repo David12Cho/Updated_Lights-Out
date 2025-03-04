@@ -7,6 +7,7 @@ TagManager:
   - Garlic
   - Shadow
   - Ground
+  - NotCrouched
   layers:
   - Default
   - TransparentFX
