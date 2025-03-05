@@ -8,10 +8,15 @@ public class LightHouse : MonoBehaviour
     public float maxIntensity = 2f;   // Peak light intensity
 
     private float duration = 0f;
+    private float durationForSound = 0f;
     private bool tookDamage = false;
     public float darkInterval = 4.5f;
     public float lightInterval = 1.5f;
+    public float timeBeforeWarn = 3.0f;
     private bool lightOn = false;
+
+    public AudioSource warningSound;
+    private bool playedSound = false;
 
 
     void Start()
@@ -43,14 +48,25 @@ public class LightHouse : MonoBehaviour
             }
             else
             {
+                if(!playedSound){
+                    durationForSound += Time.deltaTime;
+                    if(durationForSound >= timeBeforeWarn)
+                    {
+                        durationForSound = 0.0f;
+                        warningSound.Play();
+                        playedSound = true;
+                    }
+                }
+                
+
                 if(duration >= darkInterval)
                 {
                     StartCoroutine(ChangeIntensity(0, maxIntensity, fadeDuration));
                     duration -= darkInterval;
                     lightOn = true;
+                    playedSound = false;
                 }
             }
-
 
     }
 
