@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
         {
             ReturnToMenu();
         }
-
     }
 
     public void UpdateHealth(int lives)
@@ -108,5 +107,4 @@ public class GameManager : MonoBehaviour
     {
         return _lives;
     }
-
 }
