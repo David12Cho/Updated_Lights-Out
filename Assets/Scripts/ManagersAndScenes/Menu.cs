@@ -39,7 +39,7 @@ public class Menu : MonoBehaviour
         PlayerPrefs.SetInt("SavedScene", 1); // scene 1 is the first level
         PlayerPrefs.Save();
 
-        SceneManager.LoadScene(1);
+        LevelManager.Instance.LoadScene("SampleScene", "CrossFade");
     }
 
     public void OnContinueButton()
