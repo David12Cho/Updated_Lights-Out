@@ -948,6 +948,7 @@ MonoBehaviour:
   - {fileID: 1147622741}
   - {fileID: 412658343}
   emptyHeartSprite: {fileID: 21300000, guid: 3901b5c8d853646a5991d30b1400f1a2, type: 3}
+  fullHeartSprite: {fileID: 0}
 --- !u!4 &297075488 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7759158568002865579, guid: 700b0ca209f05544e915b2bd0c3c3986, type: 3}
@@ -1485,6 +1486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
+  gravityMultiplier: 2
   dashSpeed: 60
   dashDuration: 0.3
   jumpForce: 10
@@ -1497,7 +1499,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406444298}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 23236920acf364d4b8d3c7322a5432e9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5317,6 +5319,8 @@ MonoBehaviour:
   maxIntensity: 2
   darkInterval: 4.5
   lightInterval: 1.5
+  timeBeforeWarn: 3
+  warningSound: {fileID: 0}
 --- !u!1 &1406921650
 GameObject:
   m_ObjectHideFlags: 0
@@ -6236,6 +6240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
+  gravityMultiplier: 1
   dashSpeed: 60
   dashDuration: 0.3
   jumpForce: 10

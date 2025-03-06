@@ -260,7 +260,6 @@ GameObject:
   - component: {fileID: 76792162}
   - component: {fileID: 76697288}
   - component: {fileID: 76792165}
-  - component: {fileID: 76792163}
   m_Layer: 0
   m_Name: 
   m_TagString: Untagged
@@ -296,18 +295,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &76792163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 76697284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &76792165
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1580,7 +1567,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &406444301
@@ -1596,9 +1583,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
+  gravityMultiplier: 2
   dashSpeed: 60
   dashDuration: 0.3
-  jumpForce: 5
+  jumpForce: 10
   crouchScale: 0.5
   garlicHitSound: {fileID: 8300000, guid: d43d13583dc854cf89e7f9d32f61b0e7, type: 3}
 --- !u!136 &406444302
@@ -1608,7 +1596,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406444298}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 23236920acf364d4b8d3c7322a5432e9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1892,7 +1880,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452687474}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 23236920acf364d4b8d3c7322a5432e9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2894,7 +2882,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631598375}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 23236920acf364d4b8d3c7322a5432e9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5316,7 +5304,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253703161}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 23236920acf364d4b8d3c7322a5432e9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6998,6 +6986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
+  gravityMultiplier: 1
   dashSpeed: 60
   dashDuration: 0.3
   jumpForce: 6
