@@ -81,12 +81,6 @@ public class GameManager : MonoBehaviour
     {
         _score += score;
     }
-    public void ResetTheGame()
-    {
-        // finishGame = false;
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("SampleScene");
-    }
 
     public void ReturnToMenu()
     {
@@ -106,5 +100,17 @@ public class GameManager : MonoBehaviour
     public int GetLives()
     {
         return _lives;
+    }
+
+    public void RestartLevel() 
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ExitToMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Menu");
     }
 }
