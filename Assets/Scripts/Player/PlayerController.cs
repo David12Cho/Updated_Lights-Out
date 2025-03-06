@@ -99,6 +99,21 @@ public class PlayerController : MonoBehaviour
         Vector2 moveInput = _moveAction.ReadValue<Vector2>();
         Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
 
+        //Rotate
+        if (moveInput.sqrMagnitude > 0.01f) // Prevents unnecessary rotation when not moving
+        {
+            float angle = Mathf.Atan2(moveInput.x, moveInput.y) * Mathf.Rad2Deg;
+            if(moveInput.y >= 0)
+            {
+                transform.rotation = Quaternion.Euler(0, angle, 0);
+            }
+            else 
+            {
+                transform.rotation = Quaternion.Euler(0, angle + 180, 0);
+            }
+            
+        } 
+
         // Save last move direction for dashing
         if (moveDir != Vector3.zero)
         {
