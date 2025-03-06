@@ -8,6 +8,7 @@ TagManager:
   - Shadow
   - Ground
   - NotCrouched
+  - BossGarlic
   layers:
   - Default
   - TransparentFX
