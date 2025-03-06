@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     // Movement and dash parameters
     public float speed;
+    public float gravityMultiplier = 1f;
     public float dashSpeed = 60f;
     public float dashDuration = 0.3f;
     private Vector3 dashDirection;
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
         _crouchAction.Enable();
 
         _rb = GetComponent<Rigidbody>();
+        _rb.useGravity = false;
         audioSource = GetComponent<AudioSource>();
 
         originalScale = transform.localScale;
@@ -71,11 +73,11 @@ public class PlayerController : MonoBehaviour
         }
 
         // Crouch while the crouch button is held down, otherwise stand up
-        if (_crouchAction.IsPressed())
+        if (_crouchAction.WasPressedThisFrame())
         {
             Crouch();
         }
-        else
+        else if (_crouchAction.WasReleasedThisFrame())
         {
             StandUp();
         }
@@ -84,6 +86,12 @@ public class PlayerController : MonoBehaviour
         {
             LevelManager.Instance.LoadScene("Level 2 (Docks)", "CrossFade");
         }
+    }
+
+    void FixedUpdate()
+    {
+        //Implementing custom gravity for player
+        _rb.AddForce(Physics.gravity * gravityMultiplier, ForceMode.Acceleration);
     }
 
     private void MovePlayer()
@@ -97,7 +105,7 @@ public class PlayerController : MonoBehaviour
             dashDirection = moveDir;
         }
 
-        _rb.linearVelocity = moveDir * speed;
+        _rb.linearVelocity = new Vector3(moveDir.x * speed, _rb.linearVelocity.y, moveDir.z * speed);
 
         // clamp position if on level 2
         if (SceneManager.GetActiveScene().name == "Level 2 (Docks)")
@@ -218,6 +226,9 @@ public class PlayerController : MonoBehaviour
             }
             Debug.Log("Collided with Garlic! (Physical Collision)");
             GameManager.instance.UpdateHealth(1);
+
+            //Despawn Garlic
+            Destroy(collision.gameObject);
         }
     }
 
