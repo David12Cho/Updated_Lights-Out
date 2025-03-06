@@ -51,12 +51,12 @@ public class GameManager : MonoBehaviour
 
             if (lives > 0) // Losing health
             {
-                FindObjectOfType<HealthDisplay>().LoseLife();
+                FindFirstObjectByType<HealthDisplay>().LoseLife();
             }
             else if (lives < 0) // Gaining health
             {
                 if (_lives > 5) _lives = 5; // Ensure max lives don’t exceed 5
-                FindObjectOfType<HealthDisplay>().GainLife(); // Update UI to add a heart
+                FindFirstObjectByType<HealthDisplay>().GainLife(); // Update UI to add a heart
             }
 
             Debug.Log("Updated Lives: " + _lives);
