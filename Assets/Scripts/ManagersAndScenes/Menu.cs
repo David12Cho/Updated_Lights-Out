@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class Menu : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class Menu : MonoBehaviour
     public GameObject controlsButton;
     public RectTransform controlsButtonTransform; // control buttons' positioning
     public bool resetPlayerPrefsOnStart = false;
+    public TMP_InputField HaungsMode;
 
     private void Start()
     {
@@ -34,6 +37,15 @@ public class Menu : MonoBehaviour
 
     public void OnNewGameButton() 
     {
+        if (HaungsMode.text == "Haungs")
+        {
+            PlayerPrefs.SetInt("ImmuneToLight", 1); // Save immunity cheat
+        }
+        else
+        {
+            PlayerPrefs.SetInt("ImmuneToLight", 0); // Ensure normal gameplay
+        }
+
         // save game progress immediately on new game
         PlayerPrefs.SetInt("HasSavedGame", 1);
         PlayerPrefs.SetInt("SavedScene", 1); // scene 1 is the first level

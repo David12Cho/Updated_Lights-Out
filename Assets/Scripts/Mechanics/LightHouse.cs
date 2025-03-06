@@ -17,12 +17,15 @@ public class LightHouse : MonoBehaviour
 
     public AudioSource warningSound;
     private bool playedSound = false;
-
-
+    private bool immuneToLight = false;
+    
     void Start()
     {
         if (dirLight == null)
+        {
             dirLight = GetComponent<Light>(); // Auto-assign if missing
+        }
+        immuneToLight = PlayerPrefs.GetInt("ImmuneToLight", 0) == 1;
     }
 
     void Update()
@@ -31,7 +34,7 @@ public class LightHouse : MonoBehaviour
 
             if(lightOn)
             {
-                if (!tookDamage && !GameManager.instance.inShadow)
+                if (!tookDamage && !GameManager.instance.inShadow && !immuneToLight)
                 {
                     tookDamage = true;
                     // FindFirstObjectByType<HealthDisplay>().LoseLife();
