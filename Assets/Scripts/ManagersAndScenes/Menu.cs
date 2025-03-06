@@ -8,25 +8,25 @@ public class Menu : MonoBehaviour
     public GameObject continueButton;
     public GameObject controlsButton;
     public RectTransform controlsButtonTransform; // control buttons' positioning
+    public bool resetPlayerPrefsOnStart = false;
+
     private void Start()
     {
-        // // testing purposes only
-        // if (!PlayerPrefs.HasKey("HasLaunchedBefore"))
-        // {
-        //     // first launch, delete PlayerPrefs for a fresh start
-        //     PlayerPrefs.DeleteAll();
+        // conditionally clear PlayerPrefs based on the flag (only in the Editor or first-time flag)
+        if (Application.isEditor && resetPlayerPrefsOnStart)
+        {
+            PlayerPrefs.DeleteAll();  // clears all PlayerPrefs
+            PlayerPrefs.Save();       // changes are saved
+        }
 
-        //     // set the flag to avoid deleting again in the future
-        //     PlayerPrefs.SetInt("HasLaunchedBefore", 1);
-        //     PlayerPrefs.Save();
-        // }
-        
-        // check if progress, else disable continue button
+        // check if progress exists, else disable continue button
         if (PlayerPrefs.HasKey("HasSavedGame"))
         {
             continueButton.SetActive(true);
             AdjustButtonPositions(true);
-        } else {
+        }
+        else
+        {
             continueButton.SetActive(false);
             AdjustButtonPositions(false);
         }
@@ -72,7 +72,7 @@ public class Menu : MonoBehaviour
         }
         else
         {
-            // if no "Continue", move the controls button to where continue button wouldve been
+            // if no "Continue", move the controls button to where continue button would've been
             controlsButtonTransform.anchoredPosition = new Vector2(controlsButtonTransform.anchoredPosition.x, -130);
         }
     }
