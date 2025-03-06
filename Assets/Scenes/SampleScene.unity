@@ -1964,6 +1964,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree1
       objectReference: {fileID: 0}
+    - target: {fileID: 7100566744323799479, guid: de2841a7211c2be4aade2847e70add54, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.08
+      objectReference: {fileID: 0}
     - target: {fileID: 8071651043352656227, guid: de2841a7211c2be4aade2847e70add54, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.3601613
@@ -3346,6 +3350,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 611344654}
     m_Modifications:
+    - target: {fileID: 2290741906224860081, guid: de2841a7211c2be4aade2847e70add54, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6012624803335028326, guid: de2841a7211c2be4aade2847e70add54, type: 3}
       propertyPath: m_Name
       value: Tree1
@@ -3946,6 +3954,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 611344654}
     m_Modifications:
+    - target: {fileID: 3068011069296634597, guid: 7c1839f592625a3479344a9d0b337dec, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.04
+      objectReference: {fileID: 0}
     - target: {fileID: 5125671995784800428, guid: 7c1839f592625a3479344a9d0b337dec, type: 3}
       propertyPath: m_Name
       value: TreeSet
@@ -4011,6 +4023,14 @@ PrefabInstance:
     - target: {fileID: 173464536599374114, guid: b4950161f68e70e47b38a190ffaee184, type: 3}
       propertyPath: m_Name
       value: Tree3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881074526898418912, guid: b4950161f68e70e47b38a190ffaee184, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7160297335690903368, guid: b4950161f68e70e47b38a190ffaee184, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.27
       objectReference: {fileID: 0}
     - target: {fileID: 7396430033352078133, guid: b4950161f68e70e47b38a190ffaee184, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5562,6 +5582,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7100566744323799479, guid: de2841a7211c2be4aade2847e70add54, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.49
+      objectReference: {fileID: 0}
     - target: {fileID: 8071651043352656227, guid: de2841a7211c2be4aade2847e70add54, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5791,6 +5815,10 @@ PrefabInstance:
     - target: {fileID: 4397056914526242743, guid: 3537461de6e981a4cba6536cf6ef7247, type: 3}
       propertyPath: m_Name
       value: Tree2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5531101256125837463, guid: 3537461de6e981a4cba6536cf6ef7247, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.03
       objectReference: {fileID: 0}
     - target: {fileID: 8637313783868341149, guid: 3537461de6e981a4cba6536cf6ef7247, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6323,6 +6351,10 @@ PrefabInstance:
     - target: {fileID: 173464536599374114, guid: b4950161f68e70e47b38a190ffaee184, type: 3}
       propertyPath: m_Name
       value: Tree3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7160297335690903368, guid: b4950161f68e70e47b38a190ffaee184, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.28
       objectReference: {fileID: 0}
     - target: {fileID: 7396430033352078133, guid: b4950161f68e70e47b38a190ffaee184, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6910,6 +6942,10 @@ PrefabInstance:
     - target: {fileID: 4397056914526242743, guid: 3537461de6e981a4cba6536cf6ef7247, type: 3}
       propertyPath: m_Name
       value: Tree2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5531101256125837463, guid: 3537461de6e981a4cba6536cf6ef7247, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.05
       objectReference: {fileID: 0}
     - target: {fileID: 8637313783868341149, guid: 3537461de6e981a4cba6536cf6ef7247, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8810,6 +8846,10 @@ PrefabInstance:
     - target: {fileID: 6012624803335028326, guid: de2841a7211c2be4aade2847e70add54, type: 3}
       propertyPath: m_Name
       value: Tree1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7100566744323799479, guid: de2841a7211c2be4aade2847e70add54, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.08
       objectReference: {fileID: 0}
     - target: {fileID: 8071651043352656227, guid: de2841a7211c2be4aade2847e70add54, type: 3}
       propertyPath: m_LocalPosition.x
