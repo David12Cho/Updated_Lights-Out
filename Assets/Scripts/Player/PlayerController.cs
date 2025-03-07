@@ -239,6 +239,13 @@ public class PlayerController : MonoBehaviour
             {
                 audioSource.PlayOneShot(garlicHitSound);
             }
+            
+            GreenSmokeEffect smokeEffect = FindObjectOfType<GreenSmokeEffect>();
+            if (smokeEffect != null)
+            {
+                smokeEffect.TriggerSmoke(transform); // Pass 'transform' instead of 'position'
+            }
+
             Debug.Log("Collided with Garlic! (Physical Collision)");
             GameManager.instance.UpdateHealth(1);
 
