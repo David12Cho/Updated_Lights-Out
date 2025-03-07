@@ -10,5 +10,6 @@ public class GreenSmokeEffect : MonoBehaviour
         GameObject smoke = Instantiate(greenSmokePrefab, player.position, Quaternion.identity);
         smoke.transform.SetParent(player); // Attach smoke to the player
         Destroy(smoke, smokeDuration); // Destroy after smokeDuration
+        Debug.Log("Particles from: " + player.position.x + ", " + player.position.z);
     }
 }
