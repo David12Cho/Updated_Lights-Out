@@ -65,11 +65,6 @@ public class LevelManager : MonoBehaviour
         // ensure all objects are fully loaded and initialized
         yield return new WaitUntil(() => SceneManager.GetActiveScene().name == sceneName);
 
-        if (SceneManager.GetActiveScene().name != "SampleScene") // don't wait if first level
-        {
-            yield return new WaitForSeconds(4f); 
-        }
-
         progressBar.gameObject.SetActive(false);
 
         yield return transition.AnimateTransitionOut();
