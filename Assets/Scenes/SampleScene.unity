@@ -1050,7 +1050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.039215688}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6814,8 +6814,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rawImage: {fileID: 293228434}
-  scareDuration: 1
-  moveInterval: 0.1
+  scareDuration: 0.5
+  moveInterval: 0.05
   minPosition: {x: -150, y: 150}
   maxPosition: {x: 50, y: 250}
 --- !u!1 &1620688346
