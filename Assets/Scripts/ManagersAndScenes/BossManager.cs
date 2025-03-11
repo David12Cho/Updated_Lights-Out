@@ -12,6 +12,8 @@ public class BossManager : MonoBehaviour
     float timeSinceObstacle = 0f;
     float ObstacleLifetime = 10f;
 
+    Vector3 obsSpawnPosition;
+
     void Update()
     {
         timeSinceGarlic += Time.deltaTime;
@@ -37,7 +39,6 @@ public class BossManager : MonoBehaviour
         var newGarlic = Instantiate(garlicPrefab);
         var enemyController = newGarlic.GetComponent<BossGarlic>();
 
-        // randomized values; speed & spawn 
         var speedchoice = UnityEngine.Random.Range(1, speedLimit); // randomly decides speed of garlic
         var spawnchoice = UnityEngine.Random.Range((float)-7.2, (float)6.5); // randomly decides where on the x axis that the garlic can spawn
 
@@ -46,17 +47,35 @@ public class BossManager : MonoBehaviour
 
     }
 
+
     void SpawnObstacle()
     {
-        var newObs = Instantiate(obstaclePrefab);
+        int maxAttempts = 3; // Prevent infinite loops
+        bool validSpawn = false;
 
-        var randX = UnityEngine.Random.Range((float)-7.2, (float)6.5); // randomly decides where obstacle can spawn
-        var randZ = UnityEngine.Random.Range((float)6.2, (float)24.3); // randomly decides where obstacle can spawn
+        for (int i = 0; i < maxAttempts; i++)
+        {
+            var randX = UnityEngine.Random.Range(-7.2f, 6.5f);
+            var randZ = UnityEngine.Random.Range(6.2f, 24.3f);
+            obsSpawnPosition = new Vector3(randX, 1, randZ);
 
-        newObs.transform.position = new Vector3(randX, 1, randZ);
-        // Destroy the obstacle after obstacleLifetime seconds
-        Destroy(newObs, ObstacleLifetime);
+            // Check if the spawn position is clear
+            if (!Physics.CheckSphere(obsSpawnPosition, checkRadius))
+            {
+                validSpawn = true;
+                break;
+            }
+        }
 
+        if (validSpawn)
+        {
+            var newObs = Instantiate(obstaclePrefab, obsSpawnPosition, Quaternion.identity);
+            Destroy(newObs, ObstacleLifetime); // Destroy after lifetime
+        }
+        else
+        {
+            Debug.LogWarning("Failed to find a valid spawn position after multiple attempts.");
+        }
     }
 
 
