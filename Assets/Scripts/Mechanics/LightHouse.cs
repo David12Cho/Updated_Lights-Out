@@ -18,6 +18,8 @@ public class LightHouse : MonoBehaviour
     public AudioSource warningSound;
     private bool playedSound = false;
     private bool immuneToLight = false;
+
+    public SpideySense spideySense;
     
     void Start()
     {
@@ -57,6 +59,10 @@ public class LightHouse : MonoBehaviour
                     {
                         durationForSound = 0.0f;
                         warningSound.Play();
+                        if (spideySense != null)
+                        {
+                            spideySense.SetActive(true);
+                        }
                         playedSound = true;
                     }
                 }
@@ -68,6 +74,10 @@ public class LightHouse : MonoBehaviour
                     duration -= darkInterval;
                     lightOn = true;
                     playedSound = false;
+                    if (spideySense != null)
+                    {
+                        spideySense.SetActive(false);
+                    }
                 }
             }
 
