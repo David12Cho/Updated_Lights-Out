@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+
 public class PlayerController : MonoBehaviour
 {
     // Movement and dash parameters
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody _rb;
     private AudioSource audioSource;
     public AudioClip garlicHitSound;
+    public AudioClip dashSound;
 
     // Ground check flag to prevent double jumps
     private bool isGrounded = false;
@@ -145,6 +147,12 @@ public class PlayerController : MonoBehaviour
         }
 
         Debug.Log("Dashing in direction: " + dashDirection);
+
+        if (dashSound != null && audioSource != null)
+        {
+            float volume = 0.2f;
+            audioSource.PlayOneShot(dashSound, volume);
+        }
 
         // Apply an instantaneous force in the dash direction
         _rb.AddForce(dashDirection * dashSpeed, ForceMode.Impulse);
