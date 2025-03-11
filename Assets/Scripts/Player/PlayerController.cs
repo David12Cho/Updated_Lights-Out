@@ -8,11 +8,13 @@ public class PlayerController : MonoBehaviour
 {
     // Movement and dash parameters
     public float speed;
+    public float crouchSpeedFactor = 0.6f;
     public float gravityMultiplier = 1f;
     public float dashSpeed = 60f;
     public float dashDuration = 0.3f;
     private Vector3 dashDirection;
     private bool isDashing = false;
+    private bool isCrouched = false;
 
     // Jump and crouch parameters
     public float jumpForce = 10f;         
@@ -79,7 +81,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Crouch while the crouch button is held down, otherwise stand up
-        if (_crouchAction.WasPressedThisFrame())
+        if (_crouchAction.IsPressed() && !isCrouched)
         {
             Crouch();
         }
@@ -121,7 +123,14 @@ public class PlayerController : MonoBehaviour
             dashDirection = moveDir;
         }
 
-        _rb.linearVelocity = new Vector3(moveDir.x * speed, _rb.linearVelocity.y, moveDir.z * speed);
+        if (!isCrouched)
+        {
+            _rb.linearVelocity = new Vector3(moveDir.x * speed, _rb.linearVelocity.y, moveDir.z * speed);
+        }
+        else
+        {
+            _rb.linearVelocity = new Vector3(moveDir.x * speed * crouchSpeedFactor, _rb.linearVelocity.y, moveDir.z * speed * crouchSpeedFactor);
+        }
 
         // clamp position if on level 2
         if (SceneManager.GetActiveScene().name == "Level 2 (Docks)")
@@ -136,7 +145,7 @@ public class PlayerController : MonoBehaviour
     private void Dash()
     {
         // Ensure we have at least one bat to consume and we're not already dashing
-        if (isDashing || BatAI.followingBats.Count <= 0) return;
+        if (isDashing || isCrouched || BatAI.followingBats.Count <= 0) return;
 
         isDashing = true;
 
@@ -188,6 +197,7 @@ public class PlayerController : MonoBehaviour
     private void Crouch()
     {
         // Scale down the player's y-axis to simulate crouching
+        isCrouched = true;
         transform.localScale = new Vector3(originalScale.x, originalScale.y * crouchScale, originalScale.z);
         Debug.Log("Crouching");
     }
@@ -195,6 +205,7 @@ public class PlayerController : MonoBehaviour
     private void StandUp()
     {
         // Restore the player's original scale
+        isCrouched = false;
         transform.localScale = originalScale;
         Debug.Log("Standing up");
     }
