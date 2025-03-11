@@ -85,11 +85,6 @@ public class PlayerController : MonoBehaviour
         {
             StandUp();
         }
-
-        if (SceneManager.GetActiveScene().name == "SampleScene" && transform.position.z >= -652) 
-        {
-            LevelManager.Instance.LoadScene("Level 2 (Docks)", "CrossFade");
-        }
     }
 
     void FixedUpdate()
