@@ -34,6 +34,10 @@ public class PlayerController : MonoBehaviour
     // for small boxes
     private bool isInNotCrouchedArea = false;
 
+    // More Audio Clip Sounds
+    public AudioClip[] damageHitSounds;
+    public ShakeEffect shakeEffect;
+
     void Start()
     {
         _moveAction = InputSystem.actions.FindAction("Move");
@@ -235,10 +239,18 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Garlic"))
         {
-            if (garlicHitSound != null)
+            // if (garlicHitSound != null)
+            // {
+            //     audioSource.PlayOneShot(garlicHitSound);
+            // }
+
+            if (damageHitSounds.Length != 0)
             {
-                audioSource.PlayOneShot(garlicHitSound);
+                var choice = UnityEngine.Random.Range(0, damageHitSounds.Length);
+                audioSource.PlayOneShot(damageHitSounds[choice]);
             }
+
+            shakeEffect.StartJumpscare();
             
             GreenSmokeEffect smokeEffect = FindObjectOfType<GreenSmokeEffect>();
             if (smokeEffect != null)
