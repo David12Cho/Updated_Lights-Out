@@ -2581,6 +2581,7 @@ MonoBehaviour:
   countText: {fileID: 0}
   loseScreen: {fileID: 1118688005}
   inShadow: 0
+  player: {fileID: 406444304}
 --- !u!4 &602981105
 Transform:
   m_ObjectHideFlags: 0
@@ -10011,7 +10012,6 @@ SceneRoots:
   - {fileID: 634614411}
   - {fileID: 1620688347}
   - {fileID: 1310312542}
-  - {fileID: 1675908567}
   - {fileID: 1558703396}
   - {fileID: 1406921651}
   - {fileID: 1929716073}
