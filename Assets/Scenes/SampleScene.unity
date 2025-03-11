@@ -7001,6 +7001,7 @@ MonoBehaviour:
   jumpForce: 6
   crouchScale: 0.5
   garlicHitSound: {fileID: 8300000, guid: d43d13583dc854cf89e7f9d32f61b0e7, type: 3}
+  dashSound: {fileID: 0}
   damageHitSounds: []
   shakeEffect: {fileID: 0}
 --- !u!136 &1675908570

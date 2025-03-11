@@ -253,7 +253,11 @@ public class PlayerController : MonoBehaviour
                 audioSource.PlayOneShot(damageHitSounds[choice]);
             }
 
-            shakeEffect.StartJumpscare();
+
+            if (collision.gameObject.GetComponent<AngryGarlic>() != null)
+            {
+                shakeEffect.StartJumpscare();
+            }
             
             GreenSmokeEffect smokeEffect = FindObjectOfType<GreenSmokeEffect>();
             if (smokeEffect != null)
