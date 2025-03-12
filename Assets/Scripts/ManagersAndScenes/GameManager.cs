@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     private bool hasDied = false;
     // private bool finishGame = false;
 
-    int _lives = 5;
+    public int _lives = 5;
     int _score = 0;
 
     public Transform player; 
