@@ -5,7 +5,8 @@ using TMPro;
 
 public class Menu : MonoBehaviour
 {
-    public GameObject controlsWindow; // parent gameobj for controls window
+    public GameObject controlsWindow1; // parent gameobj for controls window
+    public GameObject controlsWindow2;
     public GameObject menuElements; // title + buttons
     public GameObject continueButton;
     public GameObject controlsButton;
@@ -81,7 +82,7 @@ public class Menu : MonoBehaviour
 
     public void OnControlsButton() // when "controls" button is clicked
     {
-        controlsWindow.SetActive(true);
+        controlsWindow1.SetActive(true);
         menuElements.SetActive(false);
 
         if (audioSource && enterClickSound)
@@ -92,7 +93,8 @@ public class Menu : MonoBehaviour
 
     public void OnCloseControls() // when closing the window
     {
-        controlsWindow.SetActive(false);
+        controlsWindow1.SetActive(false);
+        controlsWindow2.SetActive(false);
         menuElements.SetActive(true);
 
         if (audioSource && exitClickSound)
@@ -100,6 +102,28 @@ public class Menu : MonoBehaviour
             audioSource.PlayOneShot(exitClickSound);
         }
     }
+
+    public void OnNextControls() // ">" button to switch to second window
+    {
+        controlsWindow1.SetActive(false);
+        controlsWindow2.SetActive(true);
+
+        if (audioSource && enterClickSound)
+        {
+            audioSource.PlayOneShot(enterClickSound);
+        }
+    }
+    public void OnPreviousControls() // "<" button to switch back
+    {
+        controlsWindow2.SetActive(false);
+        controlsWindow1.SetActive(true);
+
+        if (audioSource && enterClickSound)
+        {
+            audioSource.PlayOneShot(enterClickSound);
+        }
+    }
+
 
     private void AdjustButtonPositions(bool hasProgress)
     {
