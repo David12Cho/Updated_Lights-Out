@@ -13,6 +13,12 @@ public class Menu : MonoBehaviour
     public bool resetPlayerPrefsOnStart = false;
     public TMP_InputField HaungsMode;
 
+    // Audio Stuff for buttons
+    public AudioSource audioSource;
+    public AudioClip enterClickSound;
+    public AudioClip exitClickSound;
+    public AudioClip startGameSound;
+
     private void Start()
     {
         // conditionally clear PlayerPrefs based on the flag (only in the Editor or first-time flag)
@@ -51,6 +57,11 @@ public class Menu : MonoBehaviour
         PlayerPrefs.SetInt("SavedScene", 1); // scene 1 is the first level
         PlayerPrefs.Save();
 
+        if (audioSource && startGameSound)
+        {
+            audioSource.PlayOneShot(startGameSound);
+        }
+
         LevelManager.Instance.LoadScene("Cutscene-1", "CrossFade");
     }
 
@@ -58,6 +69,11 @@ public class Menu : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("SavedScene"))
         {
+            if (audioSource && startGameSound)
+            {
+                audioSource.PlayOneShot(startGameSound);
+            }
+            
             int savedScene = PlayerPrefs.GetInt("SavedScene");
             SceneManager.LoadScene(savedScene);
         }
@@ -67,12 +83,22 @@ public class Menu : MonoBehaviour
     {
         controlsWindow.SetActive(true);
         menuElements.SetActive(false);
+
+        if (audioSource && enterClickSound)
+        {
+            audioSource.PlayOneShot(enterClickSound);
+        }
     }
 
     public void OnCloseControls() // when closing the window
     {
         controlsWindow.SetActive(false);
         menuElements.SetActive(true);
+
+        if (audioSource && exitClickSound)
+        {
+            audioSource.PlayOneShot(exitClickSound);
+        }
     }
 
     private void AdjustButtonPositions(bool hasProgress)

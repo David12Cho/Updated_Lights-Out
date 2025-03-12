@@ -14,6 +14,9 @@ public class BatAI : MonoBehaviour
     private Vector3 offset;  
     private Vector3 lastPosition;  
 
+    public AudioSource audioSource;
+    public AudioClip[] batSqueaks;
+
     void Start()
     {
         offset = new Vector3(0f, hoverHeight, followDistance);
@@ -27,6 +30,12 @@ public class BatAI : MonoBehaviour
             following = true;
             followingBats.Add(this);
             UpdateBatPositions();
+
+            if (batSqueaks.Length != 0)
+            {
+                var choice = UnityEngine.Random.Range(0, batSqueaks.Length);
+                audioSource.PlayOneShot(batSqueaks[choice]);
+            }
         }
     }
 
