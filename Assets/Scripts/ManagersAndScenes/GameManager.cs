@@ -18,13 +18,7 @@ public class GameManager : MonoBehaviour
     int _score = 0;
 
     public Transform player; 
-    private AsyncOperation level2AsyncOperation;
-    private bool isLevel2Ready = false;
 
-    private void Start()
-    {
-        StartCoroutine(PreloadLevel2());
-    }
     private void Awake()
     {
         if (instance == null)
@@ -52,27 +46,8 @@ public class GameManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "SampleScene" && player.position.z >= -652) 
         {
-            // LevelManager.Instance.LoadScene("Level 2 (Docks)", "CrossFade");
-            level2AsyncOperation.allowSceneActivation = true; // now we activate the scene
-            LevelManager.Instance.LoadScene("Level 2 (Docks)", "CrossFade");
-            isLevel2Ready = false;
+            LevelManager.Instance.LoadScene("Cutscene-2", "CrossFade");
         }
-    }
-
-    private IEnumerator PreloadLevel2()
-    {
-        // start loading Level 2 in the background
-        level2AsyncOperation = SceneManager.LoadSceneAsync("Level 2 (Docks)");
-        level2AsyncOperation.allowSceneActivation = false; // don't switch to Level 2 yet
-
-        // wait until the level is at least partially loaded (progress >= 0.9)
-        while (level2AsyncOperation.progress < 0.9f)
-        {
-            yield return null;
-        }
-
-        isLevel2Ready = true;
-        Debug.Log("Level 2 is ready!");
     }
 
     public void UpdateHealth(int lives)
