@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class CutsceneManager : MonoBehaviour
 {
@@ -196,8 +197,12 @@ public class CutsceneManager : MonoBehaviour
     void EndCutscene()
     {
         // Transition to the next scene or return to gameplay
-        // UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
-        LevelManager.Instance.LoadScene("SampleScene", "CrossFade");
+        if (SceneManager.GetActiveScene().name == "Cutscene-1") 
+        {
+            LevelManager.Instance.LoadScene("SampleScene", "CrossFade");
+        } else if (SceneManager.GetActiveScene().name == "Cutscene-2") {
+            LevelManager.Instance.LoadScene("Level 2 (Docks)", "CrossFade");    
+        }
     }
 
     IEnumerator TransitionWithFade(int index)
