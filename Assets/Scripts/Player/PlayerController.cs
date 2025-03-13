@@ -291,4 +291,25 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
     }
+
+    private void OnEnable()
+    {
+        Shadow.OnShadowDestroyed += HandleShadowDestroyed;
+    }
+
+    private void OnDisable()
+    {
+        Shadow.OnShadowDestroyed -= HandleShadowDestroyed;
+    }
+
+    private void HandleShadowDestroyed(GameObject shadowObject)
+    {
+        if (shadowObject.CompareTag("Shadow") && !isInNotCrouchedArea)
+        {
+            GameManager.instance.UpdateShadow(false);
+            Debug.Log("Shadow destroyed, exited shadow!");
+        }
+    }
+
+
 }

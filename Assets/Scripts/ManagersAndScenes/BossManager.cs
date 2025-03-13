@@ -33,7 +33,7 @@ public class BossManager : MonoBehaviour
     public float checkRadius = 1.5f;
     bool validSpawn = true;
     public LayerMask obstacleLayer;
-    private GameObject currentObstacle; // Tracks the active obstacle
+    private GameObject[] currentObstacles = new GameObject[2]; // Tracks two active obstacles
 
     [Header("Instakill Settings")]
     public float timeToInstaKill = 30f; // Time in seconds before insta-kill triggers
@@ -44,6 +44,7 @@ public class BossManager : MonoBehaviour
     private float elapsedTime = 0f; // Keeps track of time since the level has begun
     private bool stage1CompleteCalled = false; // Flag to track Stage1Complete
     private bool stage2CompleteCalled = false;
+    [SerializeField] private GameObject lightMechanic;
 
 
     void Update()
@@ -51,10 +52,10 @@ public class BossManager : MonoBehaviour
         CheckPlayerIdle(); // instakill checker
         elapsedTime += Time.deltaTime; // keep track of elapsed time
 
-        if (elapsedTime < 60f)
+        if (elapsedTime < 30f)
         {
             Stage1Logic();
-        } else if (elapsedTime < 120f)
+        } else if (elapsedTime < 60f)
         {
             if (!stage1CompleteCalled)
             {
@@ -63,7 +64,7 @@ public class BossManager : MonoBehaviour
             }
 
             Stage2Logic();
-        } else if (elapsedTime < 180f)
+        } else if (elapsedTime < 90f)
         {
             if (!stage2CompleteCalled)
             {
@@ -72,7 +73,7 @@ public class BossManager : MonoBehaviour
             }
 
             Stage3Logic(); 
-        } else if (elapsedTime < 240f)
+        } else if (elapsedTime < 120f)
         {
             // add.. scene change.. here... yes... ugh.. the gmae.. is done.. my name... is edwin..
         }
@@ -81,7 +82,7 @@ public class BossManager : MonoBehaviour
     void Stage1Logic()
     {
         timeSinceGarlic += Time.deltaTime;
-        if (timeSinceGarlic > garlicSpawnTime)
+        if (timeSinceGarlic > garlicSpawnTime - 2)
         {
             timeSinceGarlic = 0f;
             SpawnGarlic();
@@ -98,27 +99,18 @@ public class BossManager : MonoBehaviour
 
     }
 
-    void Stage1Complete()
-    {
-        // overlay textbox for dentist dialogue
-    }
-    void Stage2Complete()
-    {
-        // overlay textbox for dentist dialogue
-    }
-
     void Stage2Logic()
     {
+
         // time since garlic gets faster
         timeSinceGarlic += Time.deltaTime;
-        if (timeSinceGarlic+2 > garlicSpawnTime)
+        if (timeSinceGarlic > garlicSpawnTime)
         {
             timeSinceGarlic = 0f;
             SpawnGarlic();
 
         }
 
-        // no change to obstacle spawn
         timeSinceObstacle += Time.deltaTime;
         if (timeSinceObstacle > obstacleSpawnTime)
         {
@@ -189,6 +181,19 @@ public class BossManager : MonoBehaviour
         }
     }
 
+    void Stage1Complete()
+    {
+        // overlay textbox for dentist dialogue
+        SpawnObstacle2(); // Force an immediate obstacle spawn
+        lightMechanic.SetActive(true); // Move the lightMechanic activation here
+    }
+    void Stage2Complete()
+    {
+        // overlay textbox for dentist dialogue
+        // enable light mechanic
+
+    }
+
     void SpawnGarlic()
     {
         var newGarlic = Instantiate(garlicPrefab);
@@ -235,26 +240,34 @@ public class BossManager : MonoBehaviour
         }
     }
 
-    void SpawnObstacle2()
-
-    {    // Destroy the current obstacle if it exists
-        if (currentObstacle != null)
+    void SpawnObstacle2(){
+         // Destroy current obstacles if they exist
+        for (int i = 0; i < currentObstacles.Length; i++)
         {
-            Destroy(currentObstacle);
+            if (currentObstacles[i] != null)
+            {
+                Destroy(currentObstacles[i]);
+            }
         }
 
-        // Spawn a new obstacle
-        GameObject selectedObstacle = Instantiate(obstaclePrefabs[UnityEngine.Random.Range(0, obstaclePrefabs.Length)]);
+        // Spawn two new obstacles
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject selectedObstacle = Instantiate(obstaclePrefabs[UnityEngine.Random.Range(0, obstaclePrefabs.Length)]);
 
-        var randX = UnityEngine.Random.Range(-7.2f, 6.5f);
-        var randZ = UnityEngine.Random.Range(6.2f, 24.3f);
+            var randX = UnityEngine.Random.Range(-7.2f, 6.5f);
+            var randZ = UnityEngine.Random.Range(6.2f, 24.3f);
 
-        selectedObstacle.transform.position = new Vector3(randX, 1, randZ);
+            selectedObstacle.transform.position = new Vector3(randX, 1, randZ);
 
-        currentObstacle = selectedObstacle; // Track the new obstacle
+            currentObstacles[i] = selectedObstacle; // Track the new obstacle
+        }
 
-        // Optionally destroy it after a set time if needed
-        Destroy(currentObstacle, 5f);
+        // Automatically destroy both obstacles after 10 seconds
+        foreach (var obstacle in currentObstacles)
+        {
+            Destroy(obstacle, ObstacleLifetime);
+        }
 
     }
 
