@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
     public GameObject transitionsContainer;
     public Slider progressBar;
     private SceneTransition[] transitions;
+    private bool isSceneLoading = false;
 
     private void Awake()
     {
@@ -21,21 +22,25 @@ public class LevelManager : MonoBehaviour
         else 
         {
             Destroy(gameObject);
+            return;
         }
     }
 
     private void Start()
     {
-        transitions = transitionsContainer.GetComponentsInChildren<SceneTransition>();
+        if (transitionsContainer != null && transitions == null)
+        {
+            transitions = transitionsContainer.GetComponentsInChildren<SceneTransition>();
+        }
     } 
 
     public void LoadScene(string sceneName, string transitionName)
     {
-        if (SceneManager.GetActiveScene().name == sceneName)
-        {
-            Debug.Log("Scene is already loaded, skipping load: " + sceneName);
-            return;  
-        }
+        if (isSceneLoading) return;
+        if (SceneManager.GetActiveScene().name == sceneName) return;
+
+        isSceneLoading = true;
+        Debug.Log("Attempting to load scene: " + sceneName);
         StartCoroutine(LoadSceneAsync(sceneName, transitionName));
     }
 
@@ -52,6 +57,7 @@ public class LevelManager : MonoBehaviour
 
         while (scene.progress < 0.9f) 
         {
+            Debug.Log($"Loading progress: {scene.progress}");
             progressBar.value = scene.progress;
             yield return null;
         }
@@ -63,10 +69,12 @@ public class LevelManager : MonoBehaviour
         yield return null;
 
         // ensure all objects are fully loaded and initialized
-        yield return new WaitUntil(() => SceneManager.GetActiveScene().name == sceneName);
+        // yield return new WaitUntil(() => SceneManager.GetActiveScene().name == sceneName);
 
         progressBar.gameObject.SetActive(false);
 
         yield return transition.AnimateTransitionOut();
+
+        isSceneLoading = false;
     }
 }

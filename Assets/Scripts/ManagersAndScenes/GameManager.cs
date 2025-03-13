@@ -18,13 +18,7 @@ public class GameManager : MonoBehaviour
     int _score = 0;
 
     public Transform player; 
-    private AsyncOperation level2AsyncOperation;
-    private bool isLevel2Ready = false;
 
-    private void Start()
-    {
-        StartCoroutine(PreloadLevel2());
-    }
     private void Awake()
     {
         if (instance == null)
@@ -52,51 +46,29 @@ public class GameManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "SampleScene" && player.position.z >= -652) 
         {
-            // LevelManager.Instance.LoadScene("Level 2 (Docks)", "CrossFade");
-            level2AsyncOperation.allowSceneActivation = true; // now we activate the scene
-            LevelManager.Instance.LoadScene("Level 2 (Docks)", "CrossFade");
-            isLevel2Ready = false;
+            LevelManager.Instance.LoadScene("Cutscene-2", "CrossFade");
         }
-    }
-
-    private IEnumerator PreloadLevel2()
-    {
-        // start loading Level 2 in the background
-        level2AsyncOperation = SceneManager.LoadSceneAsync("Level 2 (Docks)");
-        level2AsyncOperation.allowSceneActivation = false; // don't switch to Level 2 yet
-
-        // wait until the level is at least partially loaded (progress >= 0.9)
-        while (level2AsyncOperation.progress < 0.9f)
-        {
-            yield return null;
-        }
-
-        isLevel2Ready = true;
-        Debug.Log("Level 2 is ready!");
     }
 
     public void UpdateHealth(int lives)
     {
-        if (!inShadow)
+        _lives -= lives; // Decrease on damage, increase on healing (lives is negative when healing)
+
+        if (lives > 0) // Losing health
         {
-            _lives -= lives; // Decrease on damage, increase on healing (lives is negative when healing)
+            FindFirstObjectByType<HealthDisplay>().LoseLife();
+        }
+        else if (lives < 0) // Gaining health
+        {
+            if (_lives > 5) _lives = 5; // Ensure max lives don’t exceed 5
+            FindFirstObjectByType<HealthDisplay>().GainLife(); // Update UI to add a heart
+        }
 
-            if (lives > 0) // Losing health
-            {
-                FindFirstObjectByType<HealthDisplay>().LoseLife();
-            }
-            else if (lives < 0) // Gaining health
-            {
-                if (_lives > 5) _lives = 5; // Ensure max lives don’t exceed 5
-                FindFirstObjectByType<HealthDisplay>().GainLife(); // Update UI to add a heart
-            }
+        Debug.Log("Updated Lives: " + _lives);
 
-            Debug.Log("Updated Lives: " + _lives);
-
-            if (_lives <= 0)
-            {
-                GameOver();
-            }
+        if (_lives <= 0)
+        {
+            GameOver();
         }
     }
 

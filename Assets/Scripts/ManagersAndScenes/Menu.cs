@@ -5,13 +5,20 @@ using TMPro;
 
 public class Menu : MonoBehaviour
 {
-    public GameObject controlsWindow; // parent gameobj for controls window
+    public GameObject controlsWindow1; // parent gameobj for controls window
+    public GameObject controlsWindow2;
     public GameObject menuElements; // title + buttons
     public GameObject continueButton;
     public GameObject controlsButton;
     public RectTransform controlsButtonTransform; // control buttons' positioning
     public bool resetPlayerPrefsOnStart = false;
     public TMP_InputField HaungsMode;
+
+    // Audio Stuff for buttons
+    public AudioSource audioSource;
+    public AudioClip enterClickSound;
+    public AudioClip exitClickSound;
+    public AudioClip startGameSound;
 
     private void Start()
     {
@@ -51,13 +58,23 @@ public class Menu : MonoBehaviour
         PlayerPrefs.SetInt("SavedScene", 1); // scene 1 is the first level
         PlayerPrefs.Save();
 
-        LevelManager.Instance.LoadScene("SampleScene", "CrossFade");
+        if (audioSource && startGameSound)
+        {
+            audioSource.PlayOneShot(startGameSound);
+        }
+
+        LevelManager.Instance.LoadScene("Cutscene-1", "CrossFade");
     }
 
     public void OnContinueButton()
     {
         if (PlayerPrefs.HasKey("SavedScene"))
         {
+            if (audioSource && startGameSound)
+            {
+                audioSource.PlayOneShot(startGameSound);
+            }
+            
             int savedScene = PlayerPrefs.GetInt("SavedScene");
             SceneManager.LoadScene(savedScene);
         }
@@ -65,15 +82,48 @@ public class Menu : MonoBehaviour
 
     public void OnControlsButton() // when "controls" button is clicked
     {
-        controlsWindow.SetActive(true);
+        controlsWindow1.SetActive(true);
         menuElements.SetActive(false);
+
+        if (audioSource && enterClickSound)
+        {
+            audioSource.PlayOneShot(enterClickSound);
+        }
     }
 
     public void OnCloseControls() // when closing the window
     {
-        controlsWindow.SetActive(false);
+        controlsWindow1.SetActive(false);
+        controlsWindow2.SetActive(false);
         menuElements.SetActive(true);
+
+        if (audioSource && exitClickSound)
+        {
+            audioSource.PlayOneShot(exitClickSound);
+        }
     }
+
+    public void OnNextControls() // ">" button to switch to second window
+    {
+        controlsWindow1.SetActive(false);
+        controlsWindow2.SetActive(true);
+
+        if (audioSource && enterClickSound)
+        {
+            audioSource.PlayOneShot(enterClickSound);
+        }
+    }
+    public void OnPreviousControls() // "<" button to switch back
+    {
+        controlsWindow2.SetActive(false);
+        controlsWindow1.SetActive(true);
+
+        if (audioSource && enterClickSound)
+        {
+            audioSource.PlayOneShot(enterClickSound);
+        }
+    }
+
 
     private void AdjustButtonPositions(bool hasProgress)
     {
