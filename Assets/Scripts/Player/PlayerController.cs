@@ -240,7 +240,7 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
         }
 
-        if (collision.gameObject.CompareTag("Garlic"))
+        if (collision.gameObject.CompareTag("Garlic") || collision.gameObject.CompareTag("BossGarlic"))
         {
             // if (garlicHitSound != null)
             // {
@@ -253,7 +253,7 @@ public class PlayerController : MonoBehaviour
                 audioSource.PlayOneShot(damageHitSounds[choice]);
             }
 
-            shakeEffect.StartJumpscare();
+            //shakeEffect.StartJumpscare();
             
             GreenSmokeEffect smokeEffect = FindObjectOfType<GreenSmokeEffect>();
             if (smokeEffect != null)

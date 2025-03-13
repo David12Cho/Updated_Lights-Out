@@ -122,4 +122,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  hitFlashImage: {fileID: 5700025049235358930, guid: 3f80238332acdb640872923ab944f69f, type: 3}
