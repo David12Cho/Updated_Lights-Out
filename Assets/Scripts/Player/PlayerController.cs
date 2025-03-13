@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Dashing in direction: " + dashDirection);
 
         if (dashSound != null && audioSource != null)
-        {
+        {   
             float volume = 0.2f;
             audioSource.PlayOneShot(dashSound, volume);
         }

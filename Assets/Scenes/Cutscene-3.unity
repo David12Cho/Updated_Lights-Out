@@ -944,20 +944,26 @@ MonoBehaviour:
   skipButton: {fileID: 2144576130}
   skipButtonDuration: 3
   slides:
-  - image: {fileID: 21300000, guid: 6d43e3b6587fe4784ab4e116043c97fe, type: 3}
+  - image: {fileID: 21300000, guid: d6321e66d703d446984de8830719e31f, type: 3}
     dialogueLines:
-    - "Frivo: Ee gads\u2026! There's so much garlic for no reason!\n"
-    - "Frivo: Oh, well. At least\u2026 I\u2019ve arrived at Chesnok Docks. It's Alliumville\u2019s
-      main port.\n"
+    - "After an egregious journey! \n"
+    - "The antidote\u2026 it's so close that I can almost taste it!"
     displayTime: 0
-  - image: {fileID: 21300000, guid: 3e3382604faf54d5c87ea364ec2fdc14, type: 3}
+  - image: {fileID: 21300000, guid: 7341504eb5ced416499aaf4d530a765c, type: 3}
     dialogueLines:
-    - There isn't as much room to hide from the wicked lighthouse.
-    - "Maybe\u2026 I can crouch under those smaller boxes\u2026"
+    - "But\u2026 now is not the time to celebrate. "
+    - 'The shorter distance does not mean that the distance is non-existent to begin
+      with. '
     displayTime: 0
-  - image: {fileID: 21300000, guid: b7e6851caf85546008a14cf277fd5e35, type: 3}
-    dialogueLines: []
-    displayTime: 2.5
+  - image: {fileID: 21300000, guid: 0240aef64d3e44fc7b98de866a6833f3, type: 3}
+    dialogueLines:
+    - 'Frivo: Jeez! '
+    - 'Frivo: I haven''t climbed this much since hiking to the Garlic G!'
+    displayTime: 0
+  - image: {fileID: 21300000, guid: 17b9fb5bf3ddc40fda6e0df5a585b34f, type: 3}
+    dialogueLines:
+    - 'All these floors... '
+    displayTime: 2
   textSpeed: 0.05
   fadePanel: {fileID: 301161132}
   fadeDuration: 1
