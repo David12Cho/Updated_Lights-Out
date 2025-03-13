@@ -6,6 +6,7 @@ public class Web : MonoBehaviour
     public float speed = 6f;
     private Vector3 playerPos;
     //public GameObject hitFlashImage;
+    public GameObject webOverlayUI;
 
     void Start()
     {
@@ -32,9 +33,4 @@ public class Web : MonoBehaviour
         }
     }
 
-    void OnCollission(Collider other)
-    {
-        // here is where the player gets the white/web overlay similarly to garlic stinky
-        // ashley you do this. becausw i cant fucking do it im gonna go crazy
-    }
 }

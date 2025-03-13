@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 
 public class PlayerController : MonoBehaviour
@@ -41,6 +42,9 @@ public class PlayerController : MonoBehaviour
     // More Audio Clip Sounds
     public AudioClip[] damageHitSounds;
     public ShakeEffect shakeEffect;
+
+    // for spider web
+    public GameObject webOverlayUI;
 
     void Start()
     {
@@ -223,6 +227,11 @@ public class PlayerController : MonoBehaviour
             GameManager.instance.UpdateShadow(false);
             Debug.Log("Not crouched, not in shadow!");
         }
+        else if (other.gameObject.CompareTag("Web")) // Web hit the player
+        {
+            ShowWebOverlay();
+            Destroy(other.gameObject); // Remove the web projectile
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -291,4 +300,27 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
     }
+
+
+    // SPIDER WEB
+
+    void ShowWebOverlay()
+    {
+        if (webOverlayUI != null)
+        {
+            webOverlayUI.SetActive(true);
+            StartCoroutine(HideWebOverlayAfterDelay(2f)); // Hide after 2 seconds
+        }
+        else
+        {
+            Debug.LogError("Web Overlay UI is not assigned!");
+        }
+    }
+
+    IEnumerator HideWebOverlayAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        webOverlayUI.SetActive(false);
+    }
+
 }
