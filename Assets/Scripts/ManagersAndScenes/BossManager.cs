@@ -60,11 +60,12 @@ public class BossManager : MonoBehaviour
             obsSpawnPosition = new Vector3(randX, 1, randZ);
 
             // Check if the spawn position is clear
-            if (!Physics.CheckSphere(obsSpawnPosition, checkRadius))
-            {
-                validSpawn = true;
-                break;
-            }
+            //if (!Physics.CheckSphere(obsSpawnPosition, checkRadius))
+            //{
+             //   validSpawn = true;
+              //  break;
+           // }
+           continue;
         }
 
         if (validSpawn)
