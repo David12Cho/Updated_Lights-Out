@@ -256,24 +256,25 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Garlic"))
         {
-            // if (garlicHitSound != null)
-            // {
-            //     audioSource.PlayOneShot(garlicHitSound);
-            // }
+            
 
             if (damageHitSounds.Length != 0)
             {
-                var choice = UnityEngine.Random.Range(0, damageHitSounds.Length);
-                audioSource.PlayOneShot(damageHitSounds[choice]);
+                if (garlicHitSound != null)
+                {
+                    audioSource.PlayOneShot(garlicHitSound);
+                }
             }
 
 
             if (collision.gameObject.GetComponent<AngryGarlic>() != null)
             {
+                var choice = UnityEngine.Random.Range(0, damageHitSounds.Length);
+                audioSource.PlayOneShot(damageHitSounds[choice]);
                 shakeEffect.StartJumpscare();
             }
             
-            GreenSmokeEffect smokeEffect = FindObjectOfType<GreenSmokeEffect>();
+            GreenSmokeEffect smokeEffect = FindFirstObjectByType<GreenSmokeEffect>();
             if (smokeEffect != null)
             {
                 smokeEffect.TriggerSmoke(transform); // Pass 'transform' instead of 'position'
