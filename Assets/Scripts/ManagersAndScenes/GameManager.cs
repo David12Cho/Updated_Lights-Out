@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     private bool hasDied = false;
     // private bool finishGame = false;
 
-    int _lives = 20;
+    public int lives = 5;
     int _score = 0;
 
     public Transform player; 
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        if (!hasDied && _lives <= 0)
+        if (!hasDied && lives <= 0)
         {
             hasDied = true;
             Time.timeScale = 0f;
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateHealth(int lives)
     {
-        _lives -= lives; // Decrease on damage, increase on healing (lives is negative when healing)
+        lives -= lives; // Decrease on damage, increase on healing (lives is negative when healing)
 
         if (lives > 0) // Losing health
         {
@@ -60,13 +60,13 @@ public class GameManager : MonoBehaviour
         }
         else if (lives < 0) // Gaining health
         {
-            if (_lives > 5) _lives = 5; // Ensure max lives don’t exceed 5
+            if (lives > 5) lives = 5; // Ensure max lives don’t exceed 5
             FindFirstObjectByType<HealthDisplay>().GainLife(); // Update UI to add a heart
         }
 
-        Debug.Log("Updated Lives: " + _lives);
+        Debug.Log("Updated Lives: " + lives);
 
-        if (_lives <= 0)
+        if (lives <= 0)
         {
             GameOver();
         }
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
 
     public int GetHealth()
     {
-        return _lives;
+        return lives;
     }
 
     public void UpdateShadow(bool true_false)
@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
 
     public int GetLives()
     {
-        return _lives;
+        return lives;
     }
 
     public void RestartLevel() 

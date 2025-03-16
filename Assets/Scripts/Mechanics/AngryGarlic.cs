@@ -21,7 +21,7 @@ public class AngryGarlic : MonoBehaviour
 
     void Update()
     {
-        if (playerTransform != null)
+        if (playerTransform != null && !GameManager.instance.inShadow)
         {
             Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
 
