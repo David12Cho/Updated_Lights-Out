@@ -122,3 +122,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slowDownFactor: 0.5
+  playerMovement: {fileID: 4423468199150551081, guid: 1de0a1f6373839948befb7bf7f7d3f80, type: 3}
