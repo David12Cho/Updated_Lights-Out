@@ -29,21 +29,29 @@ public class AngryGarlic : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (playerTransform != null && !GameManager.instance.inShadow)
+        if (playerTransform != null)
         {
-            Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
-            Vector3 newPosition = transform.position + directionToPlayer * followSpeed * Time.fixedDeltaTime;
-
-
-            rb.MovePosition(newPosition);
-
-            if (directionToPlayer != Vector3.zero)
+            if (!GameManager.instance.inShadow)
             {
-                Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+                Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
+                Vector3 newPosition = transform.position + directionToPlayer * followSpeed * Time.fixedDeltaTime;
 
-                targetRotation *= Quaternion.Euler(0, 200f, 0);
-                rb.MoveRotation(Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * followSpeed));
+
+                rb.MovePosition(newPosition);
+
+                if (directionToPlayer != Vector3.zero)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+
+                    targetRotation *= Quaternion.Euler(0, 200f, 0);
+                    rb.MoveRotation(Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * followSpeed));
+                }
             }
+            else 
+            {
+                rb.linearVelocity = Vector3.zero;
+            }
+            
         }
     }
 }
