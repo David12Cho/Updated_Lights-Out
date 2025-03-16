@@ -57,7 +57,11 @@ public class CutsceneManager : MonoBehaviour
     public void SkipCutscene()
     {
         StopAllCoroutines();
-        LevelManager.Instance.LoadScene("SampleScene", "CrossFade"); // Load next scene
+        if (SceneManager.GetActiveScene().name == "Cutscene-1") {
+            LevelManager.Instance.LoadScene("SampleScene", "CrossFade"); // Load next scene   
+        } else if (SceneManager.GetActiveScene().name == "Cutscene-2") {
+            LevelManager.Instance.LoadScene("Level 2 (Docks)", "CrossFade");
+        }
     }
 
     void OnNextButtonClick()
@@ -202,7 +206,7 @@ public class CutsceneManager : MonoBehaviour
             LevelManager.Instance.LoadScene("SampleScene", "CrossFade");
         } else if (SceneManager.GetActiveScene().name == "Cutscene-2") {
             LevelManager.Instance.LoadScene("Level 2 (Docks)", "CrossFade");    
-        }
+        } 
     }
 
     IEnumerator TransitionWithFade(int index)
