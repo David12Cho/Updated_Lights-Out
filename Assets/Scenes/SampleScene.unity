@@ -3951,6 +3951,7 @@ MonoBehaviour:
   countText: {fileID: 0}
   loseScreen: {fileID: 1118688005}
   inShadow: 0
+  lives: 5
   player: {fileID: 406444304}
 --- !u!4 &602981105
 Transform:
@@ -9849,7 +9850,9 @@ MonoBehaviour:
   darkInterval: 4.5
   lightInterval: 1.5
   timeBeforeWarn: 3
-  warningSound: {fileID: 1521675152}
+  audioSource: {fileID: 1521675152}
+  warningSound: {fileID: 8300000, guid: 4071ab2a32b0a544d90346f9aa60d781, type: 3}
+  damageSound: {fileID: 8300000, guid: c7a0e58736d176e45a21c5bc28d19203, type: 3}
   spideySense: {fileID: 2068393135}
 --- !u!114 &1521675150
 MonoBehaviour:
@@ -9949,10 +9952,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4071ab2a32b0a544d90346f9aa60d781, type: 3}
-  m_Resource: {fileID: 8300000, guid: 4071ab2a32b0a544d90346f9aa60d781, type: 3}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
