@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip dashSound;
 
     // Ground check flag to prevent double jumps
-    private bool isGrounded = false;
+    public GroundDetector feet;
 
     // for small boxes
     private bool isInNotCrouchedArea = false;
@@ -192,10 +192,10 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         // Only allow a jump if the player is on the ground
-        if (!isGrounded) return;
+        if (!feet || !feet.GetGrounded()) return;
         Debug.Log("Jump action triggered");
         _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        isGrounded = false; // Prevent further jumps until landing
+        feet.SetGrounded(false); // Prevent further jumps until landing
     }
 
     private void Crouch()
@@ -244,7 +244,7 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("NotCrouched"))
         {
             isInNotCrouchedArea = false;
-            if (!isInNotCrouchedArea && !isGrounded) 
+            if (!isInNotCrouchedArea && !feet.GetGrounded()) 
             {
                 GameManager.instance.UpdateShadow(true);
                 Debug.Log("Exited NotCrouched, back in shadow");
@@ -254,12 +254,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // When colliding with an object tagged "Ground", enable jumping again.
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
-
         if (collision.gameObject.CompareTag("Garlic"))
         {
             // if (garlicHitSound != null)
@@ -290,14 +284,6 @@ public class PlayerController : MonoBehaviour
 
             //Despawn Garlic
             Destroy(collision.gameObject);
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
         }
     }
 
