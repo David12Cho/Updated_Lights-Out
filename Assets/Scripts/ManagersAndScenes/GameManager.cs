@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
             ReturnToMenu();
         }
 
-        if (SceneManager.GetActiveScene().name == "SampleScene" && player.position.z >= 255) 
+        if (SceneManager.GetActiveScene().name == "SampleScene" && player.position.z >= -652) 
         {
             LevelManager.Instance.LoadScene("Cutscene-2", "CrossFade");
         } 
