@@ -4,9 +4,9 @@ using UnityEngine.UI;
 public class BossHealth : MonoBehaviour
 {
     public RectTransform healthBar; // Assign your UI image's RectTransform here
-    public float totalTime = 120f;  // Total duration for the decrease
+    public float totalTime;  // Total duration for the decrease
     private float initialWidth;     // Stores the starting width
-    private float elapsedTime = 0f; // Tracks time elapsed
+    public float elapsedTime = 0f; // Tracks time elapsed
 
     void Start()
     {

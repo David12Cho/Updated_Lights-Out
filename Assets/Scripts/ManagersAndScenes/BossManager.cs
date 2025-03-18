@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BossManager : MonoBehaviour
@@ -7,6 +8,7 @@ public class BossManager : MonoBehaviour
     public GameObject mudPrefab;
     public GameObject spiderPrefab;
     public GameObject batPrefab;
+    public GameObject heartPrefab;
     public GameObject[] obstaclePrefabs;
 
     [Header("Spawn Time Limits")]
@@ -16,6 +18,7 @@ public class BossManager : MonoBehaviour
     public float mudSpawnTime;
     public float spiderSpawnTime;
     public float batSpawnTime;
+    public float lifeSpawnTime;
 
     [Header("Time Sinces")]
     float timeSinceGarlic = 0f;
@@ -23,6 +26,7 @@ public class BossManager : MonoBehaviour
     float timeSinceMud = 0f;
     float timeSinceSpider = 0f;
     float timeSinceBat = 0f;
+    float timeSinceLife = 0f;
 
     [Header("Helper Lifetimes")]
     float BatLifetime = 5f;
@@ -44,8 +48,11 @@ public class BossManager : MonoBehaviour
     private float elapsedTime = 0f; // Keeps track of time since the level has begun
     private bool stage1CompleteCalled = false; // Flag to track Stage1Complete
     private bool stage2CompleteCalled = false;
+    private bool warningShown = false; // Flag to track if warning is shown
     [SerializeField] private GameObject lightMechanic;
-
+    [SerializeField] private GameObject stage1Overlay;
+    [SerializeField] private GameObject stage2Overlay;
+    [SerializeField] private GameObject killwarning;
 
     void Update()
     {
@@ -77,12 +84,13 @@ public class BossManager : MonoBehaviour
         {
             // add.. scene change.. here... yes... ugh.. the gmae.. is done.. my name... is edwin..
         }
+
     }
 
     void Stage1Logic()
     {
         timeSinceGarlic += Time.deltaTime;
-        if (timeSinceGarlic > garlicSpawnTime - 2)
+        if (timeSinceGarlic > garlicSpawnTime - 4)
         {
             timeSinceGarlic = 0f;
             SpawnGarlic();
@@ -95,6 +103,18 @@ public class BossManager : MonoBehaviour
             timeSinceMud = 0f;
             SpawnMud();
 
+        }
+
+        if (GameManager.instance.GetLives() < 3) // Only allow collecting if not full
+        {
+            // health return appears if health is lower than two
+            timeSinceLife += Time.deltaTime;
+            if (timeSinceLife > lifeSpawnTime)
+            {
+                timeSinceLife = 0f;
+                SpawnLife();
+
+            }
         }
 
     }
@@ -126,14 +146,18 @@ public class BossManager : MonoBehaviour
 
         }
 
-        // time since spider is introduced
-        timeSinceSpider += Time.deltaTime;
-        if (timeSinceSpider > spiderSpawnTime)
+        if (GameManager.instance.GetLives() < 3) // Only allow collecting if not full
         {
-            timeSinceSpider = 0f;
-            SpawnSpider();
+            // health return appears if health is lower than two
+            timeSinceLife += Time.deltaTime;
+            if (timeSinceLife > lifeSpawnTime)
+            {
+                timeSinceLife = 0f;
+                SpawnLife();
 
+            }
         }
+
     }
     void Stage3Logic()
     {
@@ -162,14 +186,28 @@ public class BossManager : MonoBehaviour
 
         }
 
-        // time since spider is faster
+        // introduce spider
         timeSinceSpider += Time.deltaTime;
-        if (timeSinceSpider + 1 > spiderSpawnTime)
+        if (timeSinceSpider > spiderSpawnTime)
         {
             timeSinceSpider = 0f;
             SpawnSpider();
 
         }
+
+        if (GameManager.instance.GetLives() < 3) // Only allow collecting if not full
+        {
+            // health return appears if health is lower than two
+            timeSinceLife += Time.deltaTime;
+            if (timeSinceLife > lifeSpawnTime)
+            {
+                timeSinceLife = 0f;
+                SpawnLife();
+
+            }
+        }
+
+        /* bat ai too complicated for me to deal with sadly..
 
         timeSinceBat += Time.deltaTime;
 
@@ -179,20 +217,48 @@ public class BossManager : MonoBehaviour
             timeSinceBat = 0f;
             SpawnBat();
         }
+
+        */
     }
 
     void Stage1Complete()
     {
-        // overlay textbox for dentist dialogue
+        if (stage1Overlay != null)
+        {
+            stage1Overlay.SetActive(true);
+            StartCoroutine(Stage1HideOverlay(2f)); // Hide after 2 seconds
+        }
+        else
+        {
+            Debug.LogError("Web Overlay UI is not assigned!");
+        }
+
         SpawnObstacle2(); // Force an immediate obstacle spawn
         lightMechanic.SetActive(true); // Move the lightMechanic activation here
     }
     void Stage2Complete()
     {
         // overlay textbox for dentist dialogue
-        // enable light mechanic
+        if (stage1Overlay != null)
+        {
+            stage2Overlay.SetActive(true);
+            StartCoroutine(Stage2HideOverlay(2f)); // Hide after 2 seconds
+        }
 
     }
+
+    IEnumerator Stage1HideOverlay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        stage1Overlay.SetActive(false);
+    }
+
+    IEnumerator Stage2HideOverlay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        stage2Overlay.SetActive(false);
+    }
+
 
     void SpawnGarlic()
     {
@@ -206,40 +272,6 @@ public class BossManager : MonoBehaviour
         newGarlic.transform.position = new Vector3(spawnchoice, 1, (float)24.9);
 
     }
-
-    // might just delete this spawnobstacle1
-    void SpawnObstacle1()
-    {
-        int maxAttempts = 3; // Prevent infinite loops
-
-        for (int i = 0; i < maxAttempts; i++)
-        {
-            var randX = UnityEngine.Random.Range(-7.2f, 6.5f);
-            var randZ = UnityEngine.Random.Range(6.2f, 24.3f);
-            obsSpawnPosition = new Vector3(randX, 1, randZ);
-
-            // Check if the spawn position is clear
-            if (Physics.CheckSphere(obsSpawnPosition, checkRadius, obstacleLayer))
-            {
-                validSpawn = false;
-                break;
-            }
-        }
-
-        if (validSpawn)
-        {
-            GameObject selectedObstacle = obstaclePrefabs[UnityEngine.Random.Range(0, obstaclePrefabs.Length)];
-            var newObs = Instantiate(selectedObstacle);
-            newObs.transform.position = obsSpawnPosition;
-            Destroy(newObs, ObstacleLifetime); // Destroy after lifetime
-        }
-        else
-        {
-            Debug.LogWarning("Failed to find a valid spawn position after multiple attempts.");
-            validSpawn = true;
-        }
-    }
-
     void SpawnObstacle2(){
          // Destroy current obstacles if they exist
         for (int i = 0; i < currentObstacles.Length; i++)
@@ -295,6 +327,19 @@ public class BossManager : MonoBehaviour
         Destroy(newSpider, 5f); // Destroy after lifetime
 
     }
+    void SpawnLife()
+    {
+        var newLife = Instantiate(heartPrefab);
+
+        var randX = UnityEngine.Random.Range(-7.2f, 6.5f);
+        var randZ = UnityEngine.Random.Range(6.2f, 24.3f);
+
+        newLife.transform.position = new Vector3(randX, 1, randZ);
+
+        Destroy(newLife, 5f); // Destroy after lifetime
+
+    }
+
     void SpawnBat()
     {
         // Randomized spawn position
@@ -326,19 +371,29 @@ public class BossManager : MonoBehaviour
         {
             Vector3 currentPlayerPosition = player.transform.position;
 
-            // Check if the player has moved
             if (currentPlayerPosition != lastPlayerPosition)
             {
-                idleTimer = 0f; // Reset timer if player moves
+                idleTimer = 0f;
+                warningShown = false; // Reset warning flag if the player moves
             }
             else
             {
-                idleTimer += Time.deltaTime; // Increase timer if player stays still
+                idleTimer += Time.deltaTime;
             }
 
-            if (idleTimer == 15f)
+            if (idleTimer >= (timeToInstaKill / 2) && !warningShown)
             {
-                WarningForKill();
+                warningShown = true; // Mark the warning as shown
+
+                if (killwarning != null)
+                {
+                    killwarning.SetActive(true);
+                    StartCoroutine(WarningForKill(2f));
+                }
+                else
+                {
+                    Debug.LogError("Web Overlay UI is not assigned!");
+                }
             }
 
             // Trigger instakill if player stands still for too long
@@ -359,10 +414,10 @@ public class BossManager : MonoBehaviour
             lastPlayerPosition = currentPlayerPosition; // Update the last known position
         }
     }
-
-    void WarningForKill()
+    IEnumerator WarningForKill(float delay)
     {
-        // ashley make a blaring red screen or..something like that
+        yield return new WaitForSeconds(delay);
+        killwarning.SetActive(false);
     }
 
     private void OnDrawGizmos()
