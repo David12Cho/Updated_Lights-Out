@@ -18,7 +18,7 @@ public class TutorialManager : MonoBehaviour
     {
         if (!hasSeenTutorial)
         {
-            tutorialUI1.SetActive(true);
+            //tutorialUI1.SetActive(true);
             hasSeenTutorial = true; // Mark tutorial as seen
             StartCoroutine(DelayedPause());
         }
