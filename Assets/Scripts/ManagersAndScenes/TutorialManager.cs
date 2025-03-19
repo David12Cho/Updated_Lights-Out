@@ -19,10 +19,12 @@ public class TutorialManager : MonoBehaviour
         {
             tutorialUI1.SetActive(true);
             hasSeenTutorial = true; // Mark tutorial as seen
+            Time.timeScale = 0f; // Pause the game
         }
         else
         {
             tutorialUI1.SetActive(false);
+            Time.timeScale = 1f; // Pause the game
         }
     }
 
@@ -34,6 +36,8 @@ public class TutorialManager : MonoBehaviour
         {
             audioSource.PlayOneShot(enterClickSound);
         }
+
+        Time.timeScale = 0f; // Pause the game
     }
 
     public void OnCloseControls() // when closing the window
@@ -45,6 +49,8 @@ public class TutorialManager : MonoBehaviour
         {
             audioSource.PlayOneShot(exitClickSound);
         }
+
+        Time.timeScale = 1f; // Pause the game
     }
 
     public void OnNextControls() // ">" button to switch to second window
