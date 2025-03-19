@@ -22,6 +22,8 @@ public class LightHouse : MonoBehaviour
     private bool immuneToLight = false;
 
     public SpideySense spideySense;
+
+    public BlurEffect blur;
     
     void Start()
     {
@@ -44,6 +46,7 @@ public class LightHouse : MonoBehaviour
                     // FindFirstObjectByType<HealthDisplay>().LoseLife();
                     GameManager.instance.UpdateHealth(1);
                     audioSource.PlayOneShot(damageSound);
+                    blur.TriggerBlur();
                     Debug.Log("Burned!");
                 }
                 if (duration >= lightInterval)
