@@ -13679,6 +13679,7 @@ MonoBehaviour:
   warningSound: {fileID: 8300000, guid: 4071ab2a32b0a544d90346f9aa60d781, type: 3}
   damageSound: {fileID: 8300000, guid: c7a0e58736d176e45a21c5bc28d19203, type: 3}
   spideySense: {fileID: 2068393135}
+  blur: {fileID: 0}
 --- !u!114 &1521675150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17123,7 +17124,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0

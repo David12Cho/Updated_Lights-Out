@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class TutorialManager : MonoBehaviour
         {
             tutorialUI1.SetActive(true);
             hasSeenTutorial = true; // Mark tutorial as seen
-            Time.timeScale = 0f; // Pause the game
+            StartCoroutine(DelayedPause());
         }
         else
         {
@@ -72,5 +73,14 @@ public class TutorialManager : MonoBehaviour
         {
             audioSource.PlayOneShot(enterClickSound);
         }
+    }
+
+    // Delay pause to wait for ccrossfade transition
+    IEnumerator DelayedPause()
+    {
+        // Wait for 1.5 seconds before executing the following code
+        yield return new WaitForSeconds(1f);
+        
+        Time.timeScale = 0f; // Pause the game
     }
 }
