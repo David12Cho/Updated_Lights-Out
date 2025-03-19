@@ -122,11 +122,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41289daf54b49294c9ca69a07bf535d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPos1: {x: 0, y: 0, z: 0}
-  targetPos2: {x: 0, y: 0, z: 0}
-  speed: 0
-  canMove: 0
-  firstMove: 0
+  moveRadius: 2
+  moveSpeed: 1
+  bounceHeight: 0.5
+  bounceSpeed: 4
+  detectionRadius: 5
+  angryGarlicPrefab: {fileID: 0}
 --- !u!1001 &3572736452314982517
 PrefabInstance:
   m_ObjectHideFlags: 0
