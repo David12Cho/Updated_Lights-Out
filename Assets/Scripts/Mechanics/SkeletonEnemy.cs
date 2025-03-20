@@ -30,6 +30,9 @@ public class SkeletonEnemy : MonoBehaviour
         if (player == null)
             return;
 
+        if (GameManager.instance.inShadow)
+            return;
+
         // If a NavMeshAgent is attached, use it to follow the player.
         if (agent != null)
         {
