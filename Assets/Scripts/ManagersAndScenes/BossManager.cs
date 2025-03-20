@@ -83,6 +83,7 @@ public class BossManager : MonoBehaviour
         } else if (elapsedTime < 120f)
         {
             // add.. scene change.. here... yes... ugh.. the gmae.. is done.. my name... is edwin..
+            LevelManager.Instance.LoadScene("Cutscene-5", "CrossFade");  
         }
 
     }
