@@ -2913,7 +2913,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1693592145
@@ -3207,9 +3207,9 @@ MonoBehaviour:
   darkInterval: 4.5
   lightInterval: 1.5
   timeBeforeWarn: 3
-  audioSource: {fileID: 0}
-  warningSound: {fileID: 1696774670}
-  damageSound: {fileID: 0}
+  audioSource: {fileID: 1696774670}
+  warningSound: {fileID: 8300000, guid: 88ba9cfc346834e22a8b43900d4d791e, type: 3}
+  damageSound: {fileID: 8300000, guid: c7a0e58736d176e45a21c5bc28d19203, type: 3}
   spideySense: {fileID: 1693592143}
   blur: {fileID: 0}
 --- !u!1 &1720497159
