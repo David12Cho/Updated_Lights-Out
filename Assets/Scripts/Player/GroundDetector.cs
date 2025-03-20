@@ -10,7 +10,17 @@ public class GroundDetector : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // When colliding with an object tagged "Ground", enable jumping again.
-        if (other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Table"))
+        {
+            isGrounded = true;
+            Debug.Log("Grounded!");
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        // When colliding with an object tagged "Ground", enable jumping again.
+        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Table"))
         {
             isGrounded = true;
             Debug.Log("Grounded!");

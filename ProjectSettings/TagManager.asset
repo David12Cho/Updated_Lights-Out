@@ -10,6 +10,7 @@ TagManager:
   - NotCrouched
   - BossGarlic
   - Web
+  - Table
   layers:
   - Default
   - TransparentFX
