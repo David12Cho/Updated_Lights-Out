@@ -254,7 +254,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Garlic"))
+        if (collision.gameObject.CompareTag("Garlic") || collision.gameObject.CompareTag("BossGarlic"))
         {
             
 
@@ -288,6 +288,33 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            feet.SetGrounded(false);
+        }
+
+    }
+
+    private void OnEnable()
+    {
+        Shadow.OnShadowDestroyed += HandleShadowDestroyed;
+    }
+
+    private void OnDisable()
+    {
+        Shadow.OnShadowDestroyed -= HandleShadowDestroyed;
+    }
+
+    private void HandleShadowDestroyed(GameObject shadowObject)
+    {
+        if (shadowObject.CompareTag("Shadow") && !isInNotCrouchedArea)
+        {
+            GameManager.instance.UpdateShadow(false);
+            Debug.Log("Shadow destroyed, exited shadow!");
+        }
+    }
 
     // SPIDER WEB
 
