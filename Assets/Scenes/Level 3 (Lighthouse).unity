@@ -19189,6 +19189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
+  crouchSpeedFactor: 0.6
   gravityMultiplier: 2.5
   dashSpeed: 60
   dashDuration: 0.3
@@ -19196,8 +19197,10 @@ MonoBehaviour:
   crouchScale: 0.5
   garlicHitSound: {fileID: 8300000, guid: d43d13583dc854cf89e7f9d32f61b0e7, type: 3}
   dashSound: {fileID: 0}
+  feet: {fileID: 0}
   damageHitSounds: []
   shakeEffect: {fileID: 0}
+  webOverlayUI: {fileID: 0}
 --- !u!136 &406444302
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -19271,6 +19274,39 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 63c44c7fdf504441f9e95caee07a5d9a, type: 3}
   m_PrefabInstance: {fileID: 1558703396}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &406444305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406444298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 355e27226b0961c429d8617bc3d6258d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &406444306
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406444298}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 0.1, z: 0.5}
+  m_Center: {x: 0, y: -0.96, z: 0}
 --- !u!1001 &407068407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28189,6 +28225,7 @@ MonoBehaviour:
   countText: {fileID: 0}
   loseScreen: {fileID: 1118688005}
   inShadow: 0
+  lives: 5
   player: {fileID: 0}
 --- !u!4 &602981105
 Transform:
@@ -68932,6 +68969,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 63c44c7fdf504441f9e95caee07a5d9a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 406444299}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 63c44c7fdf504441f9e95caee07a5d9a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 406444306}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 63c44c7fdf504441f9e95caee07a5d9a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 406444305}
   m_SourcePrefab: {fileID: 100100000, guid: 63c44c7fdf504441f9e95caee07a5d9a, type: 3}
 --- !u!4 &1559764718 stripped
 Transform:
@@ -74374,6 +74417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
+  crouchSpeedFactor: 0.6
   gravityMultiplier: 1
   dashSpeed: 60
   dashDuration: 0.3
@@ -74381,8 +74425,10 @@ MonoBehaviour:
   crouchScale: 0.5
   garlicHitSound: {fileID: 8300000, guid: d43d13583dc854cf89e7f9d32f61b0e7, type: 3}
   dashSound: {fileID: 0}
+  feet: {fileID: 0}
   damageHitSounds: []
   shakeEffect: {fileID: 0}
+  webOverlayUI: {fileID: 0}
 --- !u!136 &1675908570
 CapsuleCollider:
   m_ObjectHideFlags: 0

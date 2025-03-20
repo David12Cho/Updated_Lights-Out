@@ -10,12 +10,12 @@ public class Mud : MonoBehaviour
     {
         if (other.CompareTag("Player") && !slowApplied) // Checks if the player enters the zone
         {
+            // Assuming the player has a script with a speed variable
             PlayerController playerMovement = other.GetComponent<PlayerController>();
             if (playerMovement != null)
             {
-                originalSpeed = playerMovement.speed;
-                playerMovement.speed *= slowDownFactor;
-                playerInMud = playerMovement; // Track the player
+                originalSpeed = playerMovement.speed; // Save the original speed
+                playerMovement.speed *= slowDownFactor; // Slow down the player
             }
 
             slowApplied = true;
@@ -26,10 +26,10 @@ public class Mud : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")) // Checks if the player exits the zone
         {
             PlayerController playerMovement = other.GetComponent<PlayerController>();
-            if (playerMovement != null && playerInMud == playerMovement)
+            if (playerMovement != null)
             {
                 playerMovement.speed = originalSpeed; // Restore the original speed when the player exits the zone
             }

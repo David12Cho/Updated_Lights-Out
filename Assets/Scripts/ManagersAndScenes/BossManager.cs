@@ -402,7 +402,7 @@ public class BossManager : MonoBehaviour
                 GameManager gameManager = FindObjectOfType<GameManager>();
                 if (gameManager != null)
                 {
-                    gameManager._lives = 0;
+                    gameManager.lives = 0;
                     Debug.Log("Player stood still for too long. Instant kill activated!");
                 }
                 else
