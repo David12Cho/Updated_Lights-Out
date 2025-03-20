@@ -18,6 +18,8 @@ public class CutsceneManager : MonoBehaviour
 
     public Image cutsceneImage;
     public TMP_Text dialogueText;
+    public TMP_Text theEndText; 
+    public AudioClip biteSound; 
     public GameObject dialogueBox; // The UI panel for text
     public Button nextButton; // Button to skip typing effect & go to next text/image
     public Button skipButton;
@@ -35,6 +37,7 @@ public class CutsceneManager : MonoBehaviour
 
     public AudioClip typingSound; // The sound effect for typing
     private AudioSource audioSource; // AudioSource to play the typing sound
+    private bool hasPlayedBiteSound = false;
 
     void Start()
     {
@@ -65,6 +68,9 @@ public class CutsceneManager : MonoBehaviour
             LevelManager.Instance.LoadScene("Level 3 (Lighthouse)", "CrossFade");
         } else if (SceneManager.GetActiveScene().name == "Cutscene-4") {
             LevelManager.Instance.LoadScene("Level 4 (Boss)", "CrossFade");
+        } else if (SceneManager.GetActiveScene().name == "Cutscene-5") {
+            audioSource.Stop();
+            StartCoroutine(PlayEndSequence());
         }
     }
 
@@ -198,7 +204,40 @@ public class CutsceneManager : MonoBehaviour
         }
         else
         {
-            ShowSlide(currentSlideIndex + 1); // Move to next slide if all text is displayed
+            if (SceneManager.GetActiveScene().name == "Cutscene-5" && currentSlideIndex == slides.Length - 1)
+            {
+                StartCoroutine(PlayEndSequence());
+            }
+            else
+            {
+                ShowSlide(currentSlideIndex + 1); // Move to next slide if not the final one
+            }
+        }
+    }
+
+    IEnumerator PlayEndSequence()
+    {
+        isTyping = true; 
+
+        PlayBiteSound();
+
+        fadePanel.gameObject.SetActive(true);
+        yield return StartCoroutine(FadeToBlack(true));
+
+        theEndText.gameObject.SetActive(true);
+
+        // Keep "The End" displayed for a few seconds before quitting or returning to the main menu
+        yield return new WaitForSeconds(3f);
+
+        LevelManager.Instance.LoadScene("Menu", "CrossFade");
+    }
+
+    void PlayBiteSound()
+    {
+        if (!hasPlayedBiteSound && biteSound != null)
+        {
+            audioSource.PlayOneShot(biteSound); // Play sound once
+            hasPlayedBiteSound = true; // Mark it as played
         }
     }
 
