@@ -5,6 +5,7 @@ public class BackgroundMusic : MonoBehaviour
 {
     public AudioClip sampleSceneMusic;  // Assign music for Sample Scene
     public AudioClip level2Music;       // Assign music for Level 2
+    public AudioClip level4Music;
 
     private AudioSource audioSource;
 
@@ -46,6 +47,9 @@ public class BackgroundMusic : MonoBehaviour
         else if (SceneManager.GetActiveScene().name == "Level 2 (Docks)")
         {
             newClip = level2Music;
+        } else if (SceneManager.GetActiveScene().name == "Level 4 (Boss)")
+        {
+            newClip = level4Music;
         }
 
         if (newClip != null && audioSource.clip != newClip)
