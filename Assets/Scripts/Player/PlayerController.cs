@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 
 public class PlayerController : MonoBehaviour
@@ -33,7 +34,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip dashSound;
 
     // Ground check flag to prevent double jumps
-    private bool isGrounded = false;
+    public GroundDetector feet;
 
     // for small boxes
     private bool isInNotCrouchedArea = false;
@@ -41,6 +42,9 @@ public class PlayerController : MonoBehaviour
     // More Audio Clip Sounds
     public AudioClip[] damageHitSounds;
     public ShakeEffect shakeEffect;
+
+    // for spider web
+    public GameObject webOverlayUI;
 
     void Start()
     {
@@ -158,7 +162,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Dashing in direction: " + dashDirection);
 
         if (dashSound != null && audioSource != null)
-        {
+        {   
             float volume = 0.2f;
             audioSource.PlayOneShot(dashSound, volume);
         }
@@ -188,10 +192,10 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         // Only allow a jump if the player is on the ground
-        if (!isGrounded) return;
+        if (!feet || !feet.GetGrounded()) return;
         Debug.Log("Jump action triggered");
         _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        isGrounded = false; // Prevent further jumps until landing
+        feet.SetGrounded(false); // Prevent further jumps until landing
     }
 
     private void Crouch()
@@ -223,6 +227,11 @@ public class PlayerController : MonoBehaviour
             GameManager.instance.UpdateShadow(false);
             Debug.Log("Not crouched, not in shadow!");
         }
+        else if (other.gameObject.CompareTag("Web")) // Web hit the player
+        {
+            ShowWebOverlay();
+            Destroy(other.gameObject); // Remove the web projectile
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -235,7 +244,7 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("NotCrouched"))
         {
             isInNotCrouchedArea = false;
-            if (!isInNotCrouchedArea && !isGrounded) 
+            if (!isInNotCrouchedArea && !feet.GetGrounded()) 
             {
                 GameManager.instance.UpdateShadow(true);
                 Debug.Log("Exited NotCrouched, back in shadow");
@@ -245,32 +254,27 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // When colliding with an object tagged "Ground", enable jumping again.
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
-
         if (collision.gameObject.CompareTag("Garlic") || collision.gameObject.CompareTag("BossGarlic"))
         {
-            // if (garlicHitSound != null)
-            // {
-            //     audioSource.PlayOneShot(garlicHitSound);
-            // }
+            
 
             if (damageHitSounds.Length != 0)
             {
-                var choice = UnityEngine.Random.Range(0, damageHitSounds.Length);
-                audioSource.PlayOneShot(damageHitSounds[choice]);
+                if (garlicHitSound != null)
+                {
+                    audioSource.PlayOneShot(garlicHitSound);
+                }
             }
 
 
             if (collision.gameObject.GetComponent<AngryGarlic>() != null)
             {
+                var choice = UnityEngine.Random.Range(0, damageHitSounds.Length);
+                audioSource.PlayOneShot(damageHitSounds[choice]);
                 shakeEffect.StartJumpscare();
             }
             
-            GreenSmokeEffect smokeEffect = FindObjectOfType<GreenSmokeEffect>();
+            GreenSmokeEffect smokeEffect = FindFirstObjectByType<GreenSmokeEffect>();
             if (smokeEffect != null)
             {
                 smokeEffect.TriggerSmoke(transform); // Pass 'transform' instead of 'position'
@@ -284,32 +288,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+
+    // SPIDER WEB
+
+    void ShowWebOverlay()
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (webOverlayUI != null)
         {
-            isGrounded = false;
+            webOverlayUI.SetActive(true);
+            StartCoroutine(HideWebOverlayAfterDelay(2f)); // Hide after 2 seconds
+        }
+        else
+        {
+            Debug.LogError("Web Overlay UI is not assigned!");
         }
     }
 
-    private void OnEnable()
+    IEnumerator HideWebOverlayAfterDelay(float delay)
     {
-        Shadow.OnShadowDestroyed += HandleShadowDestroyed;
+        yield return new WaitForSeconds(delay);
+        webOverlayUI.SetActive(false);
     }
-
-    private void OnDisable()
-    {
-        Shadow.OnShadowDestroyed -= HandleShadowDestroyed;
-    }
-
-    private void HandleShadowDestroyed(GameObject shadowObject)
-    {
-        if (shadowObject.CompareTag("Shadow") && !isInNotCrouchedArea)
-        {
-            GameManager.instance.UpdateShadow(false);
-            Debug.Log("Shadow destroyed, exited shadow!");
-        }
-    }
-
 
 }

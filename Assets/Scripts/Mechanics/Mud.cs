@@ -4,11 +4,11 @@ public class Mud : MonoBehaviour
 {
     public float slowDownFactor = 0.5f; // How much the player's speed will be reduced
     private float originalSpeed; // To store the player's original speed
-    private PlayerController playerInMud; // Track the player in the mud zone
+    private bool slowApplied = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !slowApplied) // Checks if the player enters the zone
         {
             PlayerController playerMovement = other.GetComponent<PlayerController>();
             if (playerMovement != null)
@@ -17,7 +17,11 @@ public class Mud : MonoBehaviour
                 playerMovement.speed *= slowDownFactor;
                 playerInMud = playerMovement; // Track the player
             }
+
+            slowApplied = true;
         }
+
+        Debug.Log("In mud");
     }
 
     private void OnTriggerExit(Collider other)
@@ -27,19 +31,12 @@ public class Mud : MonoBehaviour
             PlayerController playerMovement = other.GetComponent<PlayerController>();
             if (playerMovement != null && playerInMud == playerMovement)
             {
-                playerMovement.speed = originalSpeed;
-                playerInMud = null; // Clear tracking when the player leaves
+                playerMovement.speed = originalSpeed; // Restore the original speed when the player exits the zone
             }
-        }
-    }
 
-    private void OnDestroy()
-    {
-        // Restore the player's speed if they are still in the mud when it's destroyed
-        if (playerInMud != null)
-        {
-            playerInMud.speed = originalSpeed;
-            playerInMud = null; // Clear reference
+            slowApplied = false;
         }
+
+        Debug.Log("Out of mud");
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class BatAI : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class BatAI : MonoBehaviour
     {
         offset = new Vector3(0f, hoverHeight, followDistance);
         lastPosition = transform.position;  // store initial position
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void OnTriggerEnter(Collider other)
@@ -39,6 +42,13 @@ public class BatAI : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        // Unsubscribe to prevent memory leaks
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        followingBats.Clear();
+    }
+
     void Update()
     {
         // ff the bat isn't following, don't move
@@ -47,8 +57,7 @@ public class BatAI : MonoBehaviour
             return;
         }
 
-        int index = followingBats.IndexOf(this);
-
+        int index = followingBats.IndexOf(this);    
         // Vector3 desiredPosition = player.position + player.forward * -followDistance + Vector3.up * hoverHeight;
         Vector3 basePosition = player.position + player.forward * -followDistance + Vector3.up * hoverHeight;
         float spacing = 1f;
@@ -65,21 +74,6 @@ public class BatAI : MonoBehaviour
         directionToPlayer.y = 0f;
         Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-        // transform.position = Vector3.Lerp(lastPosition, desiredPosition, Time.deltaTime * smoothSpeed);
-
-        // // rotate the bat to face the player
-        // Vector3 directionToPlayer = player.position - transform.position; 
-        // directionToPlayer.y = 0f; 
-
-        // // calc the target rotation to face the player
-        // Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
-
-        // // smoothly rotate the bat to the target rotation 
-        // transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-        // // update the last position for the next frame
-        // lastPosition = transform.position;
     }
 
     public static void UpdateBatPositions()
@@ -88,6 +82,17 @@ public class BatAI : MonoBehaviour
         {
             BatAI bat = followingBats[i];
             bat.Update(); // Ensure all bats update their positions
+        }
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        followingBats.Clear();
+
+        BatAI[] batsInScene = FindObjectsOfType<BatAI>();
+        foreach (var bat in batsInScene)
+        {
+            Destroy(bat.gameObject);
         }
     }
 }

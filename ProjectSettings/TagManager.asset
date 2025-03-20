@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - NotCrouched
   - BossGarlic
+  - Web
   layers:
   - Default
   - TransparentFX

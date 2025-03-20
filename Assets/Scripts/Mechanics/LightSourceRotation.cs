@@ -1,8 +1,14 @@
 using UnityEngine;
 
-public class LighthouseRotation : MonoBehaviour
+public class LightSourceRotation : MonoBehaviour
 {
     public float rotationSpeed; // Degrees per second
+    public float initialOffset;
+
+    void Start()
+    {
+        transform.Rotate(Vector3.up, initialOffset);
+    }
 
     void Update()
     {

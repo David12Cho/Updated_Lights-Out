@@ -15,11 +15,15 @@ public class LightHouse : MonoBehaviour
     public float timeBeforeWarn = 3.0f;
     private bool lightOn = false;
 
-    public AudioSource warningSound;
+    public AudioSource audioSource;
+    public AudioClip warningSound;
+    public AudioClip damageSound;
     private bool playedSound = false;
     private bool immuneToLight = false;
 
     public SpideySense spideySense;
+
+    public BlurEffect blur;
     
     void Start()
     {
@@ -41,6 +45,8 @@ public class LightHouse : MonoBehaviour
                     tookDamage = true;
                     // FindFirstObjectByType<HealthDisplay>().LoseLife();
                     GameManager.instance.UpdateHealth(1);
+                    audioSource.PlayOneShot(damageSound);
+                    blur.TriggerBlur();
                     Debug.Log("Burned!");
                 }
                 if (duration >= lightInterval)
@@ -58,7 +64,7 @@ public class LightHouse : MonoBehaviour
                     if(durationForSound >= timeBeforeWarn)
                     {
                         durationForSound = 0.0f;
-                        warningSound.Play();
+                        audioSource.PlayOneShot(warningSound);
                         if (spideySense != null)
                         {
                             spideySense.SetActive(true);

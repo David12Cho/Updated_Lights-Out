@@ -160,6 +160,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1153505960302595087, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 2613474329591085232, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
       propertyPath: m_UseGravity
       value: 0

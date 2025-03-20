@@ -68,13 +68,13 @@ public class Menu : MonoBehaviour
 
     public void OnContinueButton()
     {
-        if (PlayerPrefs.HasKey("SavedScene"))
+        if (audioSource && startGameSound)
         {
-            if (audioSource && startGameSound)
-            {
-                audioSource.PlayOneShot(startGameSound);
-            }
-            
+            audioSource.PlayOneShot(startGameSound);
+        }
+        
+        if (PlayerPrefs.HasKey("SavedScene"))
+        {            
             int savedScene = PlayerPrefs.GetInt("SavedScene");
             SceneManager.LoadScene(savedScene);
         }

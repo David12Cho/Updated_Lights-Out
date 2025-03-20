@@ -955,7 +955,7 @@ MonoBehaviour:
     - There isn't as much room to hide from the wicked lighthouse.
     - "Maybe\u2026 I can crouch under those smaller boxes\u2026"
     displayTime: 0
-  - image: {fileID: 21300000, guid: f3f26d36e4eee40d78c44421c00d9bcd, type: 3}
+  - image: {fileID: 21300000, guid: b7e6851caf85546008a14cf277fd5e35, type: 3}
     dialogueLines: []
     displayTime: 2.5
   textSpeed: 0.05
