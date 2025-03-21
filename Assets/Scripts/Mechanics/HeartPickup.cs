@@ -15,12 +15,12 @@ public class HeartPickup : MonoBehaviour
         {
             if (GameManager.instance.GetLives() < 5) // Only allow collecting if not full
             {
-                audioSource.PlayOneShot(soundEffect);
-
                 collected = true;
                 GameManager.instance.UpdateHealth(-1); // Gain a life
                 FindObjectOfType<HeartManager>().RemoveHeart(this); // Notify HeartManager
                 Debug.Log("Got health");
+
+                AudioSource.PlayClipAtPoint(soundEffect, transform.position, 5.0f);
                 Destroy(gameObject); // Remove from scene
             }
         }

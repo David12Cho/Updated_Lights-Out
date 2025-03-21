@@ -32,6 +32,7 @@ public class BatAI : MonoBehaviour
         {
             following = true;
             followingBats.Add(this);
+            Debug.Log($"Bat added! Total bats: {followingBats.Count}");
             UpdateBatPositions();
 
             if (batSqueaks.Length != 0)
@@ -46,7 +47,12 @@ public class BatAI : MonoBehaviour
     {
         // Unsubscribe to prevent memory leaks
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        followingBats.Clear();
+        if (followingBats.Contains(this))
+        {
+            followingBats.Remove(this);
+            Debug.Log($"Bat removed! Remaining bats: {followingBats.Count}");
+            UpdateBatPositions(); // Ensure remaining bats reposition properly
+        }
     }
 
     void Update()
@@ -78,10 +84,20 @@ public class BatAI : MonoBehaviour
 
     public static void UpdateBatPositions()
     {
+        Debug.Log($"Updating bat positions. Current count: {followingBats.Count}");
+
         for (int i = 0; i < followingBats.Count; i++)
         {
             BatAI bat = followingBats[i];
-            bat.Update(); // Ensure all bats update their positions
+            Vector3 basePosition = bat.player.position + bat.player.forward * -bat.followDistance + Vector3.up * bat.hoverHeight;
+            float spacing = 1f;
+
+            if (i == 1) // Second bat
+                basePosition += bat.player.right * spacing;
+            else if (i == 2) // Third bat
+                basePosition += bat.player.right * -spacing;
+
+            bat.transform.position = basePosition; // Force repositioning
         }
     }
 
