@@ -243,9 +243,9 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("NotCrouched"))
         {
-            isInNotCrouchedArea = false;
-            if (!isInNotCrouchedArea && !feet.GetGrounded()) 
+            if (isInNotCrouchedArea) 
             {
+                isInNotCrouchedArea = false;
                 GameManager.instance.UpdateShadow(true);
                 Debug.Log("Exited NotCrouched, back in shadow");
             }
