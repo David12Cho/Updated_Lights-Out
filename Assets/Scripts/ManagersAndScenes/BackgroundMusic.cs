@@ -12,22 +12,9 @@ public class BackgroundMusic : MonoBehaviour
 
     private void Awake()
     {
-        if (FindObjectsOfType<BackgroundMusic>().Length > 1)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        DontDestroyOnLoad(gameObject); // Keep music manager between scene loads
-
         audioSource = GetComponent<AudioSource>();
         audioSource.loop = true;
         SceneManager.sceneLoaded += OnSceneLoaded; // Detect scene changes
-    }
-
-    private void Start()
-    {
-        PlayMusicForCurrentScene();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -58,10 +45,21 @@ public class BackgroundMusic : MonoBehaviour
             newClip = level4Music;
         }
 
-        if (newClip != null && audioSource.clip != newClip)
+        if (newClip != null)
         {
             audioSource.clip = newClip;
             audioSource.Play();
         }
     }
+
+    // Stop music on scene change
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+        }
+    }
+
 }

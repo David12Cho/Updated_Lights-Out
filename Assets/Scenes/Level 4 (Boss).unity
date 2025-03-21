@@ -1636,7 +1636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   garlicPrefab: {fileID: 6220275949471691736, guid: 8d9517e7a3e7f454ab75bd5c0cda1e14, type: 3}
   mudPrefab: {fileID: 2742877035417167193, guid: 36250e751c896f74bb41d524a5824d49, type: 3}
-  spiderPrefab: {fileID: 919132149155446097, guid: 2761082c7dc2b614392d66e8f87713e8, type: 3}
+  spiderPrefab: {fileID: 8390785030945888294, guid: 31ecbe2a1041ed848a499132cd1b1460, type: 3}
   batPrefab: {fileID: 4661963634160193824, guid: 3762796f574fb458c9e1b51d11db6792, type: 3}
   heartPrefab: {fileID: 3190766396907158797, guid: 48dade14e0b00d14e814ffdda9a993a1, type: 3}
   obstaclePrefabs:
