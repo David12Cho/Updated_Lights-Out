@@ -50,7 +50,9 @@ public class GameManager : MonoBehaviour
         } 
         else if (SceneManager.GetActiveScene().name == "Level 2 (Docks)" && player.position.z >= -697.6) {
             LevelManager.Instance.LoadScene("Cutscene-3", "CrossFade");
-        }
+        } else if (SceneManager.GetActiveScene().name == "Level 3 (Lighthouse)" && player.position.y >= -76.15735 && player.position.z >= -886.77) {
+            LevelManager.Instance.LoadScene("Cutscene-4", "CrossFade");
+        } 
     }
 
     public void UpdateHealth(int livesLost)

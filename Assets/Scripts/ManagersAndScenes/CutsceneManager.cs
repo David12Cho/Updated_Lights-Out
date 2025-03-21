@@ -249,6 +249,10 @@ public class CutsceneManager : MonoBehaviour
             LevelManager.Instance.LoadScene("SampleScene", "CrossFade");
         } else if (SceneManager.GetActiveScene().name == "Cutscene-2") {
             LevelManager.Instance.LoadScene("Level 2 (Docks)", "CrossFade");    
+        } else if (SceneManager.GetActiveScene().name == "Cutscene-3") {
+            LevelManager.Instance.LoadScene("Level 3 (Ligthouse)", "CrossFade");    
+        } else if (SceneManager.GetActiveScene().name == "Cutscene-4") {
+            LevelManager.Instance.LoadScene("Level 4 (Boss)", "CrossFade");    
         } 
     }
 
