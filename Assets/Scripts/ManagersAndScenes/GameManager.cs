@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
             FindFirstObjectByType<HealthDisplay>().GainLife(); // Update UI to add a heart
         }
 
-        Debug.Log("Updated Lives: " + lives);
+        // Debug.Log("Updated Lives: " + lives);
 
         if (lives <= 0)
         {

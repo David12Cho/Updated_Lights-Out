@@ -23,7 +23,7 @@ public class GroundDetector : MonoBehaviour
         if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Table"))
         {
             isGrounded = true;
-            Debug.Log("Grounded!");
+            // Debug.Log("Grounded!");
         }
     }
 
