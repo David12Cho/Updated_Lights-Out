@@ -16,9 +16,13 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
+        if (SceneManager.GetActiveScene().name == "Level 2 (Docks)")
+        {
+            hasSeenTutorial = false; // Reset for Level 2 (Docks)
+        }
+        
         if (!hasSeenTutorial)
         {
-            //tutorialUI1.SetActive(true);
             hasSeenTutorial = true; // Mark tutorial as seen
             StartCoroutine(DelayedPause());
         }

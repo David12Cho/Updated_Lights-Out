@@ -177,6 +177,8 @@ public class PlayerController : MonoBehaviour
             BatAI.followingBats.RemoveAt(0);
             BatAI.UpdateBatPositions();
             Destroy(batToRemove.gameObject);
+
+            Debug.Log($"Bat used for dashing! Remaining bats: {BatAI.followingBats.Count}");
         }
 
         // End the dash after dashDuration seconds

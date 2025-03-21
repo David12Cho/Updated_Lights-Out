@@ -5993,6 +5993,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sampleSceneMusic: {fileID: 8300000, guid: aeed6fdaa64ef4156a50eee37bb5e894, type: 3}
   level2Music: {fileID: 8300000, guid: b985f4f7f14284982b9bf156e6ca93af, type: 3}
+  level3Music: {fileID: 8300000, guid: d6d1c469438b146aeb6ea8ec9733d380, type: 3}
+  level4Music: {fileID: 8300000, guid: a1e45809d49fd42ab96aa0c1744bd86a, type: 3}
 --- !u!4 &677244569 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3895458894202962012, guid: 66193572014404182b6560439742f0e4, type: 3}
